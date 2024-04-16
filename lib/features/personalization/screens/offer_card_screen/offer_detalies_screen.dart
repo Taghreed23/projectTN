@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:t_store/features/personalization/offer/add_to_cart_model.dart';
-import 'package:t_store/features/personalization/offer/favourite_button.dart';
-import 'package:t_store/features/personalization/offer/rating_offer.dart';
+import 'package:t_store/features/personalization/screens/offer_card_screen/add_to_cart_model.dart';
+import 'package:t_store/features/personalization/screens/offer_card_screen/favourite_button.dart';
+import 'package:t_store/features/personalization/screens/offer_card_screen/rating_offer.dart';
 
 class OfferDetalies extends StatelessWidget {
   const OfferDetalies({super.key});
