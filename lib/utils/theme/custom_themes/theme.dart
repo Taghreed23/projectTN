@@ -13,12 +13,12 @@ class TAppTheme {
   TAppTheme._();
 
   static ThemeData lightTheme = ThemeData(
+    scaffoldBackgroundColor: Colors.grey.shade200,
     useMaterial3: true,
     brightness: Brightness.light,
     primaryColor: Colors.green,
     textTheme: TTextTheme.LightTextTheme,
     chipTheme: TChipTheme.LightChipTheme,
-    scaffoldBackgroundColor: Colors.white,
     appBarTheme: TAppBarTheme.LightAppBarTheme,
     checkboxTheme: TCheckboxTheme.LightCheckboxTheme,
     bottomSheetTheme: TBottomSheetTheme.LightBottomSheetTheme,
@@ -28,12 +28,12 @@ class TAppTheme {
   );
 
   static ThemeData darkTheme = ThemeData(
+    scaffoldBackgroundColor: Colors.black,
     useMaterial3: true,
     brightness: Brightness.dark,
     primaryColor: Color(0xFFCF5051),
     textTheme: TTextTheme.DarkTextTheme,
     chipTheme: TChipTheme.DarkChipTheme,
-    scaffoldBackgroundColor: Colors.black,
     appBarTheme: TAppBarTheme.DarkAppBarTheme,
     checkboxTheme: TCheckboxTheme.DarkCheckboxTheme,
     bottomSheetTheme: TBottomSheetTheme.DarkBottomSheetTheme,

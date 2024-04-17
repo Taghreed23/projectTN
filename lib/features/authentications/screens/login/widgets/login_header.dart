@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:t_store/utils/constants/colors.dart';
+import 'package:food_saver/utils/constants/colors.dart';
 
-import 'package:t_store/utils/constants/sizes.dart';
-import 'package:t_store/utils/constants/text_strings.dart';
+import 'package:food_saver/utils/constants/sizes.dart';
+import 'package:food_saver/utils/constants/text_strings.dart';
 
 class TLoginHeader extends StatelessWidget {
   const TLoginHeader({
