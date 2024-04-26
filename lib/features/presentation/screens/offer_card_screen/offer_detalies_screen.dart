@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:t_store/features/personalization/screens/offer_card_screen/o_widgets/add_to_cart_model.dart';
-import 'package:t_store/features/personalization/screens/offer_card_screen/o_widgets/favourite_button.dart';
-import 'package:t_store/features/personalization/screens/offer_card_screen/o_widgets/rating_offer.dart';
+import 'package:food_saver/features/presentation/screens/offer_card_screen/o_widgets/add_to_cart_model.dart';
+import 'package:food_saver/features/presentation/screens/offer_card_screen/o_widgets/favourite_button.dart';
+import 'package:food_saver/features/presentation/screens/offer_card_screen/o_widgets/rating_offer.dart';
+import 'package:food_saver/utils/helpers/helper_functions.dart';
 
 class OfferDetalies extends StatelessWidget {
-  const OfferDetalies({super.key});
+  OfferDetalies({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final dark = THelperFunctions.isDarkMode(context);
     return Scaffold(
-      body: SafeArea(
+      body: SingleChildScrollView(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Container(
             height: MediaQuery.of(context).size.height / 2,
             width: MediaQuery.of(context).size.width,
-            decoration: const BoxDecoration(
-              color: Color(0xffD4ECF7),
+            decoration: BoxDecoration(
+              color: dark ? Colors.grey.shade400 : Color(0xffD4ECF7),
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(30),
                 bottomRight: Radius.circular(30),
@@ -27,7 +29,7 @@ class OfferDetalies extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(8),
                     child: Image.asset(
-                      'assets/images/bread.png',
+                      'assets/categories/Bakery.jpg',
                       scale: 1.8,
                     ),
                   ),

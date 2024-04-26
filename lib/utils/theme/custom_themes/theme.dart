@@ -28,7 +28,7 @@ class TAppTheme {
   );
 
   static ThemeData darkTheme = ThemeData(
-    scaffoldBackgroundColor: Colors.black,
+    scaffoldBackgroundColor: Colors.grey.shade900,
     useMaterial3: true,
     brightness: Brightness.dark,
     primaryColor: Color(0xFFCF5051),

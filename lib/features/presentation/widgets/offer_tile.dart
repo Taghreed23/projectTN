@@ -4,17 +4,30 @@ import 'package:food_saver/utils/constants/colors.dart';
 import 'package:food_saver/utils/constants/sizes.dart';
 import 'package:food_saver/utils/helpers/helper_functions.dart';
 import 'package:food_saver/common/widgets/circular_icons.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:food_saver/features/presentation/screens/offer_card_screen/offer_detalies_screen.dart';
 
 // cached network image
-class OfferTile extends StatelessWidget {
-  OfferTile({super.key});
+class HerzontalOfferTile extends StatefulWidget {
+  HerzontalOfferTile(
+      {super.key,
+      required this.color,
+      required this.icon,
+      required this.onPressed});
+  final Color color;
+  final IconData icon;
+  final VoidCallback? onPressed;
+  @override
+  State<HerzontalOfferTile> createState() => _HerzontalOfferTileState();
+}
 
+class _HerzontalOfferTileState extends State<HerzontalOfferTile> {
   @override
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
     return GestureDetector(
-      onTap: () {},
+      onTap: () => Get.to(() => OfferDetalies()),
       child: Container(
         width: 180,
         padding: const EdgeInsets.all(1),
@@ -36,7 +49,7 @@ class OfferTile extends StatelessWidget {
               height: 180,
               padding: const EdgeInsets.all(TSizes.sm),
               decoration: BoxDecoration(
-                  color: dark ? TColors.dark : TColors.light,
+                  color: dark ? Colors.white : TColors.light,
                   borderRadius: BorderRadius.circular(TSizes.cardRadiuslg),
                   border: Border.all(color: TColors.borderPrimary)),
               child: Stack(children: [
@@ -76,13 +89,13 @@ class OfferTile extends StatelessWidget {
                 ),
 
                 // fav
-                const Positioned(
+                Positioned(
                     top: 0,
                     right: 0,
                     child: TCircularIcon(
-                      icon: Iconsax.heart5,
-                      color: Colors.red,
-                    ))
+                        onPressed: widget.onPressed,
+                        icon: widget.icon,
+                        color: widget.color))
               ]),
             ),
             const SizedBox(
@@ -134,7 +147,7 @@ class OfferTile extends StatelessWidget {
                       ),
                       Container(
                         decoration: const BoxDecoration(
-                            color: TColors.dark,
+                            color: TColors.primary,
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(TSizes.cardRadiuslg),
                               bottomRight:

@@ -8,9 +8,7 @@ import 'package:food_saver/utils/constants/sizes.dart';
 import 'package:food_saver/utils/helpers/helper_functions.dart';
 
 class CartItem extends StatelessWidget {
-  const CartItem({
-    super.key,
-  });
+  const CartItem({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +28,13 @@ class CartItem extends StatelessWidget {
         ),
         Expanded(
           child: Column(
-            // mainAxisSize: MainAxisSize.min,
+            mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const TBrandTitleWithVerifiedIcon(title: 'Dessert'),
               const Flexible(
                 child: TProductTitleText(
-                  title: 'CheeseCake with Berries',
+                  title: 'CheeseCake with ',
                   maxLines: 1,
                 ),
               ),
@@ -44,16 +42,16 @@ class CartItem extends StatelessWidget {
                 TextSpan(
                   children: [
                     TextSpan(
-                        text: 'Name',
-                        style: Theme.of(context).textTheme.bodyLarge),
-                    TextSpan(
-                        text: 'shop',
-                        style: Theme.of(context).textTheme.bodyLarge),
-                    TextSpan(
-                        text: 'time left',
+                        text: ' Name:',
                         style: Theme.of(context).textTheme.bodySmall),
                     TextSpan(
-                        text: '2 days',
+                        text: ' shop',
+                        style: Theme.of(context).textTheme.bodyLarge),
+                    TextSpan(
+                        text: ' time left:',
+                        style: Theme.of(context).textTheme.bodySmall),
+                    TextSpan(
+                        text: ' 2 days',
                         style: Theme.of(context).textTheme.bodyLarge),
                   ],
                 ),

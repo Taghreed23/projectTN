@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:t_store/utils/constants/colors.dart';
-import 'package:t_store/utils/constants/enums.dart';
-import 'package:t_store/utils/constants/sizes.dart';
+import 'package:food_saver/utils/constants/colors.dart';
+import 'package:food_saver/utils/constants/enums.dart';
+import 'package:food_saver/utils/constants/sizes.dart';
 
 class TBrandTitleWithVerifiedIcon extends StatelessWidget {
   const TBrandTitleWithVerifiedIcon({
@@ -24,12 +24,11 @@ class TBrandTitleWithVerifiedIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(mainAxisSize: MainAxisSize.min, children: [
       Flexible(
-        child: TBrandTitleWithVerifiedIcon(
-          title: title,
-          textColor: textColor,
+        child: Text(
+          title,
           maxLines: maxLines,
           textAlign: textAlign,
-          brandTextSize: brandTextSize,
+          style: TextStyle(color: textColor, fontSize: 10),
         ),
       ),
       const SizedBox(width: TSizes.xs),

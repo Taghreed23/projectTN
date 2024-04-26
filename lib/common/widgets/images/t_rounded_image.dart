@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:t_store/utils/constants/colors.dart';
-import 'package:t_store/utils/constants/sizes.dart';
+import 'package:food_saver/utils/constants/colors.dart';
+import 'package:food_saver/utils/constants/sizes.dart';
 
 class TRoundImage extends StatelessWidget {
   const TRoundImage({
@@ -46,12 +46,11 @@ class TRoundImage extends StatelessWidget {
           borderRadius: applyImageRadius
               ? BorderRadius.circular(borderRadius)
               : BorderRadius.zero,
-          child: Image(
-            fit: fit,
-            image: isNetworkImage
-                ? NetworkImage(imageUrl)
-                : AssetImage(imageUrl) as ImageProvider,
-          ),
+          child: Image(fit: fit, image: AssetImage(imageUrl)
+              // isNetworkImage
+              //   ? NetworkImage(imageUrl)
+              //    : AssetImage(imageUrl) as ImageProvider,
+              ),
         ),
       ),
     );

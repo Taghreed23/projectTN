@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:food_saver/utils/constants/colors.dart';
 
 class TBottomSheetTheme {
   TBottomSheetTheme._();
   static BottomSheetThemeData LightBottomSheetTheme = BottomSheetThemeData(
+      backgroundColor: TColors.primary,
+      modalBackgroundColor: TColors.primary,
       showDragHandle: true,
-      backgroundColor: Colors.white,
-      modalBackgroundColor: Colors.white,
       constraints: const BoxConstraints(maxWidth: double.infinity),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),

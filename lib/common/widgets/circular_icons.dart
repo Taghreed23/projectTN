@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_saver/utils/constants/colors.dart';
 import 'package:food_saver/utils/constants/sizes.dart';
 import 'package:food_saver/utils/helpers/helper_functions.dart';
+import 'package:food_saver/features/presentation/widgets/offer_list.dart';
 
 class TCircularIcon extends StatelessWidget {
   const TCircularIcon(
@@ -23,14 +24,23 @@ class TCircularIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: width,
-        height: height,
-        decoration: BoxDecoration(
-            color: backgroundColor != null
-                ? backgroundColor!
-                : THelperFunctions.isDarkMode(context)
-                    ? TColors.black.withOpacity(.9)
-                    : TColors.white.withOpacity(0.9),
-            borderRadius: BorderRadius.circular(100)));
+      width: width,
+      height: height,
+      decoration: BoxDecoration(
+          color: backgroundColor != null
+              ? backgroundColor!
+              : THelperFunctions.isDarkMode(context)
+                  ? TColors.black.withOpacity(.9)
+                  : TColors.white.withOpacity(0.9),
+          borderRadius: BorderRadius.circular(100)),
+      child: IconButton(
+        onPressed: onPressed,
+        icon: Icon(
+          icon,
+          color: color,
+          size: size,
+        ),
+      ),
+    );
   }
 }

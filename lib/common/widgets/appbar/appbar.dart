@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:t_store/utils/constants/colors.dart';
-import 'package:t_store/utils/helpers/helper_functions.dart';
+import 'package:food_saver/utils/constants/colors.dart';
+import 'package:food_saver/utils/helpers/helper_functions.dart';
 
 import '../../../utils/constants/sizes.dart';
 
