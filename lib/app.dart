@@ -10,6 +10,8 @@ import 'package:food_saver/features/presentation/screens/home screen/home_page.d
 import 'package:food_saver/features/presentation/screens/offer_card_screen/offer_detalies_screen.dart';
 import 'package:food_saver/features/presentation/screens/cart_screen/cart_screen_items.dart';
 import 'package:food_saver/features/presentation/screens/cart_screen/c_widget/cart_items.dart';
+import 'package:food_saver/customer features/presentation/Screens/add_offer.dart';
+import 'package:food_saver/customer features/presentation/Screens/home_page.dart';
 
 class App extends StatefulWidget {
   const App({super.key});
@@ -23,19 +25,21 @@ class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-        themeMode: ThemeMode.system,
-        theme: TAppTheme.lightTheme,
-        darkTheme: TAppTheme.darkTheme,
-        home: Scaffold(
-          bottomNavigationBar: My_navigationBar(),
-        )
-        /*routes: {
+      themeMode: ThemeMode.system,
+      theme: TAppTheme.lightTheme,
+      darkTheme: TAppTheme.darkTheme,
+      home: CHomePage(),
+
+      // Scaffold(
+      // bottomNavigationBar: My_navigationBar(),
+      //)
+      /*routes: {
         'homeScreen': (context) => homeScreen(),
         'favListView': (context) => favListView(),
         'CartScreen': (context) => CartScreen(),
       },
       debugShowCheckedModeBanner: false,
       initialRoute: 'homeScreen',*/
-        );
+    );
   }
 }
