@@ -25,21 +25,23 @@ class loginScreen extends StatefulWidget {
 class _loginScreenState extends State<loginScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-          child: Padding(
-        padding: TSpacingStyle.paddingWithAppBarHeight,
-        child: Column(children: [
-          SizedBox(
-            height: 60,
-          ),
-          TLoginHeader(),
-          TLoginForm(),
+    return BlocProvider(
+      create: (context) => AuthCubit(),
+      child: Scaffold(
+        body: SingleChildScrollView(
+            child: Padding(
+          padding: TSpacingStyle.paddingWithAppBarHeight,
+          child: Column(children: [
+            SizedBox(
+              height: 60,
+            ),
+            TLoginHeader(),
+            TLoginForm(),
 
-          // footer
-          TSocialButton(),
-        ]),
-      )),
+            // footer
+          ]),
+        )),
+      ),
     );
   }
 }

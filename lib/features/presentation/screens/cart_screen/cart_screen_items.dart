@@ -21,7 +21,7 @@ class CartScreen extends StatelessWidget {
           padding: const EdgeInsets.all(TSizes.defaultSpace),
           child: ListView.separated(
             shrinkWrap: true,
-            itemCount: 5,
+            itemCount: 3,
             separatorBuilder: (_, __) => const SizedBox(
               height: TSizes.spaceBtwSections,
             ),

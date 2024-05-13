@@ -1,113 +1,88 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:io';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_saver/cubit/auth_state.dart';
+import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitial());
+  XFile? profilePic;
+  uploadProfilePic(XFile image) {
+    profilePic = image;
+    emit(UploadProfilePic());
+  }
 
   Future<void> createUserWithEmailAndPassword({
     required String email,
+    required String username,
     required String password,
     required String name,
-    required String phoneNo,
-    required String FirstName,
-    required String LastName,
+    required String phone_number,
+    required String gender,
+    required String birthday,
+    XFile? profilePic,
   }) async {
     try {
       emit(AuthLoading());
-
-      await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      )
-          .then(
-        (value) async {
-          if (value.user != null) {
-            await addUserDataToFireStoreDataBase(
-              name: name,
-              email: email,
-              password: password,
-              uid: value.user!.uid,
-              phoneNo: phoneNo,
-              FirstName: FirstName,
-              LastName: LastName,
-            ).then((value) {
-              emit(AuthLoaded());
-            });
-          }
-        },
+      var data = FormData.fromMap({
+        'image': profilePic,
+        'email': email,
+        'username': username,
+        'name': name,
+        'phone_number': phone_number,
+        'gender': gender,
+        'birthday': birthday,
+        'password': password
+      });
+      var dio = Dio();
+      var response = await dio.request(
+        'https://mnnt.shop/api/register/',
+        options: Options(
+          method: 'POST',
+        ),
+        data: data,
       );
-    } on FirebaseAuthException catch (e) {
-      emit(AuthError(error: firebaseAuthExceptionH(e)));
-      print(e.message);
+
+      if (response.statusCode == 200) {
+        // Handle successful registration
+        emit(AuthLoaded());
+      } else {
+        // Handle error
+        emit(AuthError(
+            error: 'Register failed with status code: ${response.statusCode}'));
+      }
     } catch (error) {
       emit(AuthError(error: 'Error: $error'));
     }
   }
 
   Future<void> login({
-    required String email,
+    required String username,
     required String password,
   }) async {
     try {
       emit(AuthLoading());
-      await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: email, password: password)
-          .then((value) {
-        if (value.user != null) {
-          emit(AuthLoaded());
-        }
-      });
-    } on FirebaseAuthException catch (e) {
-      emit(AuthError(error: firebaseAuthExceptionH(e)));
+
+      // Construct the URL with query parameters
+      final url = Uri.parse(
+          'https://mnnt.shop/api/login?username=$username&password=$password');
+
+      // Send the HTTP GET request
+      final response = await http.get(url);
+
+      // Check the response status code
+      if (response.statusCode == 200) {
+        // Handle successful login
+        emit(AuthLoaded());
+      } else {
+        // Handle error
+        emit(AuthError(
+            error: 'Login failed with status code: ${response.statusCode}'));
+      }
     } catch (error) {
       emit(AuthError(error: 'Error: $error'));
-    }
-  }
-
-  Future<void> addUserDataToFireStoreDataBase({
-    required String name,
-    required String email,
-    required String password,
-    required String uid,
-    required String phoneNo,
-    required String FirstName,
-    required String LastName,
-  }) async {
-    await FirebaseFirestore.instance.collection('users').doc(uid).set(
-      {
-        "name": name,
-        "email": email,
-        "password": password,
-        "uid": uid,
-        "phoneNo": phoneNo,
-        "FirstName": FirstName,
-        "LastName": LastName,
-      },
-    );
-  }
-
-  /// handle errors code in switch case
-  String firebaseAuthExceptionH(FirebaseAuthException e) {
-    switch (e.code) {
-      case 'invalid-cardinality':
-        return 'The email or password is invalid.';
-      case 'weak-password':
-        return 'The password provided is too weak.';
-      case 'email-already-in-use':
-        return 'The account already exists for that email.';
-      case 'user-not-found':
-        return 'No user found for that email.';
-      case 'wrong-password':
-        return 'Wrong password provided for that user.';
-      case 'invalid-email':
-        return 'Your email address appears to be malformed.';
-      case 'too-many-requests':
-        return 'Too many requests. Try again later.';
-      default:
-        return 'Error: ${e.message}';
     }
   }
 }

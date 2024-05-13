@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'app.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_saver/cubit/auth_cubit.dart';
 import 'package:food_saver/cubit/auth_state.dart';
-import 'firebase_options.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bloc/bloc.dart';
 import 'observer.dart';
@@ -14,15 +13,9 @@ import 'observer.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
   Bloc.observer = MyBlocObserver();
   runApp(
-    BlocProvider(
-      create: (context) => AuthCubit(),
-      child: const App(),
-    ),
+    const App(),
   );
 }
 

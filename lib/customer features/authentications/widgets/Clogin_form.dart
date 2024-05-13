@@ -120,7 +120,7 @@ class CLoginForm extends StatelessWidget {
                         if (formKey.currentState!.validate()) {
                           FocusScope.of(context).unfocus();
                           context.read<AuthCubit>().login(
-                                email: emailController.text,
+                                username: emailController.text,
                                 password: passwordController.text,
                               );
                         }
