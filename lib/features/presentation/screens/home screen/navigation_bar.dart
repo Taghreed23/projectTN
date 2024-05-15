@@ -35,7 +35,7 @@ class _My_navigationBarState extends State<My_navigationBar> {
 
   List Screens = [
     homeScreen(),
-    favListView(),
+    //favListView(),
     CartScreen(),
     profileScreen(),
   ];

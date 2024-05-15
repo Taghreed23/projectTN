@@ -1,7 +1,7 @@
-class RunningOutModel {
+class productModel {
   int? id;
   String? name;
-  double? price;
+  int? price;
   String? description;
   String? expireTime;
   String? image;
@@ -9,7 +9,7 @@ class RunningOutModel {
   String? shopAddress;
   String? expireTimeHumified;
 
-  RunningOutModel(
+  productModel(
       {this.id,
       this.name,
       this.price,
@@ -20,7 +20,7 @@ class RunningOutModel {
       this.shopAddress,
       this.expireTimeHumified});
 
-  RunningOutModel.fromJson(Map<String, dynamic> json) {
+  /* productModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     price = json['price'];
@@ -32,7 +32,7 @@ class RunningOutModel {
     expireTimeHumified = json['expire_time_humified'];
   }
 
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> product toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
     data['name'] = this.name;
@@ -44,5 +44,5 @@ class RunningOutModel {
     data['shop_address'] = this.shopAddress;
     data['expire_time_humified'] = this.expireTimeHumified;
     return data;
-  }
+  }*/
 }

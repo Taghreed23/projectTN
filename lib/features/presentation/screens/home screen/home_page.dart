@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:food_saver/features/presentation/screens/home screen/viwes/categories_list_view.dart';
+import 'package:food_saver/features/presentation/screens/category_screen/views/categories_list_view.dart';
 import 'package:food_saver/features/presentation/screens/home screen/widgets/foodSaving_card.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:food_saver/features/presentation/widgets/offer_tile.dart';
-import 'package:food_saver/features/presentation/widgets/offer_list.dart';
+
+import 'package:food_saver/features/presentation/screens/home screen/viwes/offer_list_view.dart';
 import 'package:food_saver/utils/constants/colors.dart';
 import 'package:food_saver/utils/constants/sizes.dart';
 import 'package:food_saver/utils/helpers/helper_functions.dart';

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:food_saver/features/presentation/screens/category_screen/category_screen.dart';
 import 'package:food_saver/features/presentation/screens/home%20screen/models/catergory_model.dart';
 import 'package:food_saver/utils/constants/colors.dart';
 import 'package:food_saver/utils/constants/sizes.dart';
 import 'package:food_saver/utils/helpers/helper_functions.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class CategoryCard extends StatelessWidget {
   const CategoryCard({super.key, required this.category});
@@ -13,16 +16,29 @@ class CategoryCard extends StatelessWidget {
     final dark = THelperFunctions.isDarkMode(context);
     return GestureDetector(
       onTap: () {
-        // Navigator.of(context).push(
-        //MaterialPageRoute(
-        //  builder: (context) {
-        //   return CategoryView(
-        //  category: category.categoryName,
-        //  );
-        //   },
-        // ),
-        //  );
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) {
+              return categoryScreen(
+                categoryId: category.id,
+                categoryName: category.categoryName,
+              );
+            },
+          ),
+        );
       },
+      //{
+
+      // Navigator.of(context).push(
+      //MaterialPageRoute(
+      //  builder: (context) {
+      //   return CategoryView(
+      //  category: category.categoryName,
+      //  );
+      //   },
+      // ),
+      //  );
+      //  },
       child: Padding(
         padding: const EdgeInsets.only(right: 16),
         child: Container(

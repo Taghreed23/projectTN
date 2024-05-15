@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_saver/features/authentications/screens/signup/widgets/signup.dart';
+import 'package:food_saver/features/presentation/screens/category_screen/category_screen.dart';
 import 'package:food_saver/features/presentation/screens/home%20screen/navigation_bar.dart';
 import 'package:food_saver/features/presentation/screens/wishlist_screen.dart';
 import 'package:get/get.dart';
@@ -7,7 +8,7 @@ import 'package:food_saver/features/authentications/screens/login/login.dart';
 import 'package:food_saver/utils/theme/custom_themes/theme.dart';
 
 import 'package:food_saver/features/presentation/screens/home screen/home_page.dart';
-import 'package:food_saver/features/presentation/screens/offer_card_screen/offer_detalies_screen.dart';
+
 import 'package:food_saver/features/presentation/screens/cart_screen/cart_screen_items.dart';
 import 'package:food_saver/features/presentation/screens/cart_screen/c_widget/cart_items.dart';
 import 'package:food_saver/customer features/presentation/Screens/add_offer.dart';

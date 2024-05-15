@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/*import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:food_saver/features/presentation/model/offer_model.dart';
 import 'package:food_saver/utils/constants/sizes.dart';
@@ -46,6 +46,7 @@ class _favListViewState extends State<favListView> {
               child: HerzontalOfferTile(
                 color: Colors.red,
                 icon: Iconsax.heart5,
+                
                 onPressed: () {},
               ),
             );
@@ -54,4 +55,4 @@ class _favListViewState extends State<favListView> {
       ]),
     );
   }
-}
+}*/

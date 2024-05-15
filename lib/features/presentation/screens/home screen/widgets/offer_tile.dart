@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:food_saver/features/presentation/model/offer_model.dart';
+import 'package:food_saver/features/presentation/screens/offer_card_screen/views/offer_detalies_screen.dart';
 import 'package:food_saver/utils/constants/colors.dart';
 import 'package:food_saver/utils/constants/sizes.dart';
 import 'package:food_saver/utils/helpers/helper_functions.dart';
 import 'package:food_saver/common/widgets/circular_icons.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:food_saver/features/presentation/screens/offer_card_screen/offer_detalies_screen.dart';
+
+import 'package:food_saver/data/network/home_request.dart';
+import 'package:food_saver/data/network/api.dart';
 
 // cached network image
 class HerzontalOfferTile extends StatefulWidget {
@@ -14,9 +17,11 @@ class HerzontalOfferTile extends StatefulWidget {
       {super.key,
       required this.color,
       required this.icon,
-      required this.onPressed});
+      required this.onPressed,
+      required this.data});
   final Color color;
   final IconData icon;
+  final Map<dynamic, dynamic> data;
   final VoidCallback? onPressed;
   @override
   State<HerzontalOfferTile> createState() => _HerzontalOfferTileState();
@@ -25,9 +30,20 @@ class HerzontalOfferTile extends StatefulWidget {
 class _HerzontalOfferTileState extends State<HerzontalOfferTile> {
   @override
   Widget build(BuildContext context) {
+    print(widget.data);
     final dark = THelperFunctions.isDarkMode(context);
     return GestureDetector(
-      onTap: () => Get.to(() => OfferDetalies()),
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) {
+              return OfferDetalies(
+                ProductId: widget.data["id"],
+              );
+            },
+          ),
+        );
+      },
       child: Container(
         width: 180,
         padding: const EdgeInsets.all(1),
@@ -64,7 +80,8 @@ class _HerzontalOfferTileState extends State<HerzontalOfferTile> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(TSizes.md),
                         child: Image(
-                            image: AssetImage('assets/categories/Bakery.jpg')),
+                            image: NetworkImage(
+                                "${Api.baseUrl2}${widget.data['image']}")),
                       )),
                 ),
 
@@ -78,13 +95,9 @@ class _HerzontalOfferTileState extends State<HerzontalOfferTile> {
                       borderRadius: BorderRadius.circular(16),
                       color: TColors.secondry.withOpacity(0.8),
                     ),
-                    child: Text(
-                      'Time',
-                      style: Theme.of(context)
-                          .textTheme
-                          .labelLarge!
-                          .apply(color: TColors.black),
-                    ),
+                    child: Text(widget.data["expire_time_humified"],
+                        maxLines: 1,
+                        style: TextStyle(color: Colors.black, fontSize: 7)),
                   ),
                 ),
 
@@ -109,10 +122,10 @@ class _HerzontalOfferTileState extends State<HerzontalOfferTile> {
               child: Column(
                 children: [
                   Text(
-                    'offer small details',
-                    style: Theme.of(context).textTheme.labelLarge,
+                    widget.data["name"],
+                    style: Theme.of(context).textTheme.bodyMedium,
                     overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
+                    maxLines: 1,
                     textAlign: TextAlign.left,
                   ),
                   SizedBox(height: TSizes.spaceBtwItems / 2),
@@ -120,9 +133,9 @@ class _HerzontalOfferTileState extends State<HerzontalOfferTile> {
                   Row(
                     children: [
                       Text(
-                        'Resturant Name',
+                        widget.data["shop_name"],
                         overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
+                        maxLines: 2,
                         style: Theme.of(context).textTheme.labelMedium,
                       ),
                       SizedBox(
@@ -140,26 +153,30 @@ class _HerzontalOfferTileState extends State<HerzontalOfferTile> {
                     children: [
                       // price
                       Text(
-                        'price £E',
+                        '${widget.data["price"].toString()} E£',
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: Theme.of(context).textTheme.headlineSmall,
                       ),
-                      Container(
-                        decoration: const BoxDecoration(
-                            color: TColors.primary,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(TSizes.cardRadiuslg),
-                              bottomRight:
-                                  Radius.circular(TSizes.productImageRadius),
-                            )),
-                        child: const SizedBox(
-                          width: TSizes.iconlg * 1.2,
-                          height: TSizes.iconlg * 1.2,
-                          child: Center(
-                            child: Icon(
-                              Iconsax.add,
-                              color: Colors.white,
+                      Positioned(
+                        right: 0,
+                        bottom: 0,
+                        child: Container(
+                          decoration: const BoxDecoration(
+                              color: TColors.primary,
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(TSizes.cardRadiuslg),
+                                bottomRight:
+                                    Radius.circular(TSizes.productImageRadius),
+                              )),
+                          child: const SizedBox(
+                            width: TSizes.iconlg * 1.2,
+                            height: TSizes.iconlg * 1.2,
+                            child: Center(
+                              child: Icon(
+                                Iconsax.add,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),

@@ -17,12 +17,12 @@ class CategoriesListView extends StatelessWidget {
     CategoryModel(
       image: 'assets/categories/Deserts.jpg',
       categoryName: 'Deserts',
-      id: 2,
+      id: 3,
     ),
     CategoryModel(
-        image: 'assets/categories/meals.jpg', categoryName: 'Meals', id: 3),
+        image: 'assets/categories/meals.jpg', categoryName: 'Meals', id: 4),
     CategoryModel(
-        image: 'assets/categories/Grocery.jpg', categoryName: 'Grocery', id: 4),
+        image: 'assets/categories/Grocery.jpg', categoryName: 'Grocery', id: 2),
   ];
   @override
   Widget build(BuildContext context) {
