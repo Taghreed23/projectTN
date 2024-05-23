@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:food_saver/core/Di.dart';
+import 'package:food_saver/core/Sh.dart';
 import 'package:food_saver/features/authentications/screens/signup/widgets/signup.dart';
 import 'package:food_saver/features/presentation/screens/category_screen/category_screen.dart';
 import 'package:food_saver/features/presentation/screens/home%20screen/navigation_bar.dart';
@@ -24,6 +26,8 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   @override
+  final token =
+      sl<MySharedPrefInterface>().getString(key: MySharedKeys.apiToken);
   Widget build(BuildContext context) {
     return GetMaterialApp(
       themeMode: ThemeMode.system,
@@ -37,9 +41,11 @@ class _AppState extends State<App> {
       },
       initialRoute: 'SignupScreen',*/
 
-      home: Scaffold(
-        bottomNavigationBar: My_navigationBar(),
-      ),
+      home: token == ""
+          ? loginScreen()
+          : Scaffold(
+              bottomNavigationBar: My_navigationBar(),
+            ),
       /*routes: {
         'homeScreen': (context) => homeScreen(),
         'favListView': (context) => favListView(),

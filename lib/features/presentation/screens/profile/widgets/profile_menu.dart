@@ -11,7 +11,8 @@ class ProfileMenu extends StatelessWidget {
       required this.value});
   final IconData icon;
   final VoidCallback onPressed;
-  final String title, value;
+  final String title;
+  final String value;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

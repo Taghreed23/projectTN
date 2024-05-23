@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_saver/features/presentation/screens/home%20screen/navigation_bar.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:food_saver/common/styles/spacing_styles.dart';
@@ -40,7 +41,9 @@ class TLoginForm extends StatelessWidget {
           Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
-              builder: (context) => homeScreen(),
+              builder: (context) => Scaffold(
+                bottomNavigationBar: My_navigationBar(),
+              ),
             ),
             (route) => false,
           );
@@ -137,7 +140,14 @@ class TLoginForm extends StatelessWidget {
                     width: double.infinity,
                     child: ElevatedButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, 'SignupScreen');
+                          Navigator.push(context, MaterialPageRoute(
+                            builder: (_) {
+                              return BlocProvider.value(
+                                value: context.read<AuthCubit>(),
+                                child: SignupScreen(),
+                              );
+                            },
+                          ));
                         },
                         child: Text(TTexts.createAccount)),
                   ),

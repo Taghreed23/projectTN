@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_saver/core/Di.dart';
+import 'package:food_saver/core/Sh.dart';
 import 'package:food_saver/cubit/auth_state.dart';
 import 'package:http/http.dart' as http;
 import 'package:dio/dio.dart';
@@ -14,6 +16,7 @@ class AuthCubit extends Cubit<AuthState> {
     emit(UploadProfilePic());
   }
 
+  var dio = Dio();
   Future<void> createUserWithEmailAndPassword({
     required String email,
     required String username,
@@ -36,7 +39,7 @@ class AuthCubit extends Cubit<AuthState> {
         'birthday': birthday,
         'password': password
       });
-      var dio = Dio();
+
       var response = await dio.request(
         'https://mnnt.shop/api/register/',
         options: Options(
@@ -45,16 +48,22 @@ class AuthCubit extends Cubit<AuthState> {
         data: data,
       );
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
         // Handle successful registration
+        final token = response.data['token'];
+
+        sl<MySharedPrefInterface>().putString(
+          key: MySharedKeys.apiToken,
+          value: token,
+        );
         emit(AuthLoaded());
       } else {
         // Handle error
         emit(AuthError(
             error: 'Register failed with status code: ${response.statusCode}'));
       }
-    } catch (error) {
-      emit(AuthError(error: 'Error: $error'));
+    } on DioException catch (error) {
+      emit(AuthError(error: 'Error: ${error.response!.data.toString()}'));
     }
   }
 
@@ -65,24 +74,35 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       emit(AuthLoading());
 
-      // Construct the URL with query parameters
-      final url = Uri.parse(
-          'https://mnnt.shop/api/login?username=$username&password=$password');
+      var response = await dio.request(
+        'https://mnnt.shop/api/login',
+        options: Options(
+          method: 'GET',
+          headers: {
+            'accept': 'application/json',
+          },
+        ),
+        queryParameters: {
+          'username': username,
+          'password': password,
+        },
+      );
 
-      // Send the HTTP GET request
-      final response = await http.get(url);
-
-      // Check the response status code
       if (response.statusCode == 200) {
-        // Handle successful login
+        final token = response.data['token'];
+
+        sl<MySharedPrefInterface>().putString(
+          key: MySharedKeys.apiToken,
+          value: token,
+        );
         emit(AuthLoaded());
       } else {
         // Handle error
         emit(AuthError(
             error: 'Login failed with status code: ${response.statusCode}'));
       }
-    } catch (error) {
-      emit(AuthError(error: 'Error: $error'));
+    } on DioException catch (error) {
+      emit(AuthError(error: 'Error: ${error.response!.data.toString()}'));
     }
   }
 }

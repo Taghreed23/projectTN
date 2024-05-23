@@ -10,6 +10,7 @@ import 'package:food_saver/utils/constants/colors.dart';
 import 'package:get/get.dart';
 import 'package:food_saver/common/widgets/circular_icons.dart';
 import 'package:food_saver/data/network/api.dart';
+import 'package:food_saver/data/network/wishlist/add_wishlist_request.dart';
 
 class cateoryTail extends StatefulWidget {
   const cateoryTail({super.key, required this.data});
@@ -20,6 +21,7 @@ class cateoryTail extends StatefulWidget {
 }
 
 class _cateoryTailState extends State<cateoryTail> {
+  WishlistAddRequest _WishlistAdd = WishlistAddRequest();
   @override
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
@@ -117,7 +119,9 @@ class _cateoryTailState extends State<cateoryTail> {
                   top: 1,
                   right: 0,
                   child: TCircularIcon(
-                      onPressed: () {},
+                      onPressed: () {
+                        _WishlistAdd.addToWishlist(id: '${widget.data["id"]}');
+                      },
                       icon: Iconsax.heart,
                       color: Colors.blueGrey))
             ],

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:food_saver/data/network/wishlist/add_wishlist_request.dart';
+import 'package:food_saver/data/network/wishlist/del_wishlist_request.dart';
 import 'package:food_saver/features/presentation/model/offer_model.dart';
 import 'package:food_saver/features/presentation/screens/offer_card_screen/views/offer_detalies_screen.dart';
+import 'package:food_saver/features/presentation/screens/wishlist_screen.dart';
 import 'package:food_saver/utils/constants/colors.dart';
 import 'package:food_saver/utils/constants/sizes.dart';
 import 'package:food_saver/utils/helpers/helper_functions.dart';
@@ -11,32 +13,37 @@ import 'package:iconsax/iconsax.dart';
 
 import 'package:food_saver/data/network/home_request.dart';
 import 'package:food_saver/data/network/api.dart';
+import 'package:food_saver/features/presentation/screens/wishlist_screen/provider/provider_state.dart';
+import 'package:food_saver/data/network/wishlist/wishlist_request.dart';
+import 'package:provider/provider.dart';
 
 // cached network image
-class HerzontalOfferTile extends StatefulWidget {
-  HerzontalOfferTile(
+class WishlistTail extends StatefulWidget {
+  WishlistTail(
       {super.key, required this.color, required this.icon, required this.data});
   final Color color;
   final IconData icon;
-  final Map<dynamic, dynamic> data;
+  final Map<String, dynamic> data;
 
   @override
-  State<HerzontalOfferTile> createState() => _HerzontalOfferTileState();
+  State<WishlistTail> createState() => _HerzontalOfferTileState();
 }
 
-class _HerzontalOfferTileState extends State<HerzontalOfferTile> {
-  WishlistAddRequest _WishlistAdd = WishlistAddRequest();
+class _HerzontalOfferTileState extends State<WishlistTail> {
+  WishlistDelRequest _WishlistDel = WishlistDelRequest();
+  WishlistRequest _wishlistData = WishlistRequest();
   @override
   Widget build(BuildContext context) {
     print(widget.data);
     final dark = THelperFunctions.isDarkMode(context);
+    final myState = Provider.of<MyState>(context);
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) {
               return OfferDetalies(
-                ProductId: widget.data["id"],
+                ProductId: widget.data["product_id"].toString(),
               );
             },
           ),
@@ -79,7 +86,7 @@ class _HerzontalOfferTileState extends State<HerzontalOfferTile> {
                         borderRadius: BorderRadius.circular(TSizes.md),
                         child: Image(
                             image: NetworkImage(
-                                "${Api.baseUrl2}${widget.data['image']}")),
+                                "${Api.baseUrl2}${widget.data['product_image']}")),
                       )),
                 ),
 
@@ -93,7 +100,8 @@ class _HerzontalOfferTileState extends State<HerzontalOfferTile> {
                       borderRadius: BorderRadius.circular(16),
                       color: TColors.secondry.withOpacity(0.8),
                     ),
-                    child: Text(widget.data["expire_time_humified"],
+                    child: Text('',
+                        //widget.data["expire_time_humified"],
                         maxLines: 1,
                         style: TextStyle(color: Colors.black, fontSize: 7)),
                   ),
@@ -101,15 +109,16 @@ class _HerzontalOfferTileState extends State<HerzontalOfferTile> {
 
                 // fav
                 Positioned(
-                    top: 0,
-                    right: 0,
-                    child: TCircularIcon(
-                        onPressed: () {
-                          _WishlistAdd.addToWishlist(
-                              id: widget.data["id"].toString());
-                        },
-                        icon: widget.icon,
-                        color: widget.color))
+                  top: 0,
+                  right: 0,
+                  child: TCircularIcon(
+                      onPressed: () {
+                        _WishlistDel.delFromwishlist(
+                            id: widget.data["product_id"]);
+                      },
+                      icon: widget.icon,
+                      color: widget.color),
+                )
               ]),
             ),
             const SizedBox(
@@ -123,7 +132,7 @@ class _HerzontalOfferTileState extends State<HerzontalOfferTile> {
               child: Column(
                 children: [
                   Text(
-                    widget.data["name"],
+                    widget.data["product_name"],
                     style: Theme.of(context).textTheme.bodyMedium,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
@@ -134,7 +143,7 @@ class _HerzontalOfferTileState extends State<HerzontalOfferTile> {
                   Row(
                     children: [
                       Text(
-                        widget.data["shop_name"],
+                        widget.data["product_shop_name"],
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
                         style: Theme.of(context).textTheme.labelMedium,
@@ -154,7 +163,7 @@ class _HerzontalOfferTileState extends State<HerzontalOfferTile> {
                     children: [
                       // price
                       Text(
-                        '${widget.data["price"].toString()} E£',
+                        '${widget.data["product_price"].toString()} E£',
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: Theme.of(context).textTheme.headlineSmall,
@@ -193,116 +202,3 @@ class _HerzontalOfferTileState extends State<HerzontalOfferTile> {
     );
   }
 }
-/* GestureDetector(
-        child: Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white, // Container color
-          borderRadius: BorderRadius.circular(20), // Rounded corners
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5), // Shadow color
-              spreadRadius: 5,
-              blurRadius: 7,
-              offset: Offset(3, 3), // changes position of shadow
-            ),
-          ],
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Center(
-            child: Column(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage(
-                          'assets/categories/meals.jpg',
-                        ),
-                        fit: BoxFit.fill),
-                  ),
-                  child: Align(
-                    alignment: Alignment.topRight,
-                    child: ElevatedButton.icon(
-                        label: Text(''),
-                        onPressed: () {},
-                        icon: Icon(Icons.favorite)),
-                  ),
-                ),
-                // Replace with your image URL
-                Center(
-                  child: Text(
-                    'Beef Burger',
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                  ),
-                ),
-                Text('Cheesy Mozzarella'),
-                Row(
-                  children: [Text('price'), Text('time')],
-                ),
-                // Add more widgets for other elements as needed
-              ],
-            ),
-          ),
-        ),
-      ),
-    )*/
-/*Expanded(
-              child: Column(
-                children: [
-                  Image.asset('assets/images/cupcake.jpg', height: 10),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Center(
-                    child: Text(
-                      'Cupcakes',
-                      style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Text('50 egp')
-                ],
-              ),
-            ),*/
-
-/*Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        ClipRRect(
-            borderRadius: BorderRadius.circular(6),
-            child: Image.network(
-              offerModel.image!,
-              height: 200,
-              width: double.infinity,
-              fit: BoxFit.cover,
-            )),
-        const SizedBox(
-          height: 12,
-        ),
-        Text(
-          offerModel.title,
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-          style: const TextStyle(
-            color: Colors.black87,
-            fontSize: 20,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        const SizedBox(
-          height: 8,
-        ),
-        Text(
-          offerModel.subTitle ?? '',
-          maxLines: 2,
-          style: const TextStyle(color: Colors.grey, fontSize: 14),
-        )
-      ],
-    );*/

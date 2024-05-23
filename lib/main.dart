@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:food_saver/core/Sh.dart';
 import 'app.dart';
-
+import 'package:food_saver/core/Di.dart' as di;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_saver/cubit/auth_cubit.dart';
@@ -12,7 +13,11 @@ import 'observer.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
 
+  await di.init();
+  await di.sl<MySharedPrefInterface>().initSP();
+  print(di.sl<MySharedPrefInterface>().getString(key: MySharedKeys.apiToken));
   Bloc.observer = MyBlocObserver();
   runApp(
     const App(),

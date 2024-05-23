@@ -46,19 +46,7 @@ class _CategoryListState extends State<CategoryListBilder> {
               return ProductListView(
                 data: snapshot.data!,
               );
-              // SliverList(
-              //   delegate: SliverChildBuilderDelegate(
-              //     childCount: snapshot.data.length,
-              //     (context, index) {
-              //       return Padding(
-              //         padding: const EdgeInsets.only(bottom: 22),
-              //         child: ProductListView(
-              //           data: snapshot.data!,
-              //         ),
-              //       );
-              //     },
-              //   ),
-              // );
+              //
             } else {
               return SliverToBoxAdapter(
                 child: Center(

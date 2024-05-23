@@ -10,7 +10,7 @@ import 'package:food_saver/data/network/product_request.dart';
 
 class OfferDetalies extends StatefulWidget {
   OfferDetalies({super.key, required this.ProductId});
-  final int ProductId;
+  final ProductId;
 
   @override
   State<OfferDetalies> createState() => _OfferDetaliesState();
