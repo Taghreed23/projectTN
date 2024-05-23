@@ -66,7 +66,9 @@ class _CartScreenState extends State<CartScreen> {
                                     SizedBox(
                                       width: 70,
                                     ),
-                                    ProductQuantityaddRemoveButton(),
+                                    ProductQuantityaddRemoveButton(
+                                      quantity: snapshot.data[index],
+                                    ),
                                   ],
                                 ),
                                 ProductPriceText(price: '50'),

@@ -5,11 +5,17 @@ import 'package:food_saver/utils/constants/colors.dart';
 import 'package:food_saver/utils/constants/sizes.dart';
 import 'package:food_saver/utils/helpers/helper_functions.dart';
 
-class ProductQuantityaddRemoveButton extends StatelessWidget {
-  const ProductQuantityaddRemoveButton({
-    super.key,
-  });
+class ProductQuantityaddRemoveButton extends StatefulWidget {
+  ProductQuantityaddRemoveButton({super.key, required this.quantity});
+  final Map<dynamic, dynamic> quantity;
 
+  @override
+  State<ProductQuantityaddRemoveButton> createState() =>
+      _ProductQuantityaddRemoveButtonState();
+}
+
+class _ProductQuantityaddRemoveButtonState
+    extends State<ProductQuantityaddRemoveButton> {
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -36,7 +42,7 @@ class ProductQuantityaddRemoveButton extends StatelessWidget {
               height: TSizes.spaceBtwItems,
             ),
             Text(
-              '2',
+              widget.quantity["quantity"].toString(),
               style: Theme.of(context).textTheme.titleSmall,
             ),
             const SizedBox(
