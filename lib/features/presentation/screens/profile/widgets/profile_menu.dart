@@ -5,7 +5,7 @@ import 'package:food_saver/utils/constants/sizes.dart';
 class ProfileMenu extends StatelessWidget {
   const ProfileMenu(
       {super.key,
-      this.icon = Iconsax.arrow_right_34,
+      this.icon = Iconsax.edit,
       required this.onPressed,
       required this.title,
       required this.value});
@@ -16,7 +16,7 @@ class ProfileMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onDoubleTap: onPressed,
+      onTap: onPressed,
       child: Padding(
         padding:
             const EdgeInsets.symmetric(vertical: TSizes.spaceBtwItems / 1.5),
@@ -39,6 +39,7 @@ class ProfileMenu extends StatelessWidget {
             Expanded(
                 child: Icon(
               icon,
+              
               size: 18,
             ))
           ],

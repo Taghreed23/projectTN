@@ -1,10 +1,10 @@
-import 'dart:io';
+
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_saver/core/Di.dart';
 import 'package:food_saver/core/Sh.dart';
 import 'package:food_saver/cubit/auth_state.dart';
-import 'package:http/http.dart' as http;
+
 import 'package:dio/dio.dart';
 import 'package:image_picker/image_picker.dart';
 

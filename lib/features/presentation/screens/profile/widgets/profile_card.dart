@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_saver/data/network/api.dart';
-import 'package:food_saver/features/presentation/screens/profile/update_profile/chang_name.dart';
+import 'package:food_saver/features/presentation/screens/profile/update_profile/changephoNO_name.dart';
 import 'package:food_saver/features/presentation/screens/profile/widgets/section_handealing.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:iconsax/iconsax.dart';
@@ -88,22 +88,23 @@ class _profileCardState extends State<profileCard> {
           ProfileMenu(
               onPressed: () {}, title: 'Email', value: widget.data["email"]),
           ProfileMenu(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return changePhoneNunber(
-                        email: widget.data["email"],
-                        Name: widget.data["name"],
-                        birthday: widget.data["birthday"],
-                        gender: widget.data["gender"],
-                      );
-                    },
-                  ),
-                );
-              },
-              title: 'Phone Number',
-              value: widget.data["phone_number"]),
+            title: 'Phone Number',
+            value: widget.data["phone_number"],
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) {
+                    return changePhoneN0(
+                      birthday: widget.data["birthday"],
+                      gender: widget.data["gender"],
+                      email: widget.data["email"],
+                    );
+                    setState(() {});
+                  },
+                ),
+              );
+            },
+          ),
           ProfileMenu(
               onPressed: () {}, title: 'Gender', value: widget.data["gender"]),
           ProfileMenu(
