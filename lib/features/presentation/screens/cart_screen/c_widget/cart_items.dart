@@ -1,5 +1,8 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:food_saver/common/widgets/images/t_rounded_image.dart';
+import 'package:food_saver/data/network/api.dart';
 import 'package:food_saver/features/presentation/screens/cart_screen/c_widget/product_text_title.dart';
 import 'package:food_saver/features/presentation/screens/cart_screen/c_widget/t_brand_text_with_icon.dart';
 import 'package:food_saver/utils/constants/colors.dart';
@@ -7,17 +10,26 @@ import 'package:food_saver/utils/constants/image_strings.dart';
 import 'package:food_saver/utils/constants/sizes.dart';
 import 'package:food_saver/utils/helpers/helper_functions.dart';
 
-class CartItem extends StatelessWidget {
-  const CartItem({Key? key}) : super(key: key);
+class CartItem extends StatefulWidget {
+  const CartItem({
+    Key? key,
+    required this.data,
+  }) : super(key: key);
+  final Map<dynamic, dynamic> data;
 
+  @override
+  State<CartItem> createState() => _CartItemState();
+}
+
+class _CartItemState extends State<CartItem> {
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         TRoundImage(
-          imageUrl: 'assets/categories/Bakery.jpg',
-          width: 60,
-          height: 60,
+          imageUrl: "${Api.baseUrl2}${widget.data['product_image']}",
+          width: 80,
+          height: 80,
           padding: const EdgeInsets.all(TSizes.sm),
           backgroundColor: THelperFunctions.isDarkMode(context)
               ? TColors.darkerGrey
@@ -31,31 +43,33 @@ class CartItem extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const TBrandTitleWithVerifiedIcon(title: 'Dessert'),
-              const Flexible(
+              TBrandTitleWithVerifiedIcon(
+                  title: widget.data["product_shop_name"]!),
+              Flexible(
                 child: TProductTitleText(
-                  title: 'CheeseCake with ',
+                  title: widget.data["product_name"],
                   maxLines: 1,
                 ),
               ),
-              Text.rich(
-                TextSpan(
-                  children: [
-                    TextSpan(
-                        text: ' Name:',
-                        style: Theme.of(context).textTheme.bodySmall),
-                    TextSpan(
-                        text: ' shop',
-                        style: Theme.of(context).textTheme.bodyLarge),
-                    TextSpan(
-                        text: ' time left:',
-                        style: Theme.of(context).textTheme.bodySmall),
-                    TextSpan(
-                        text: ' 2 days',
-                        style: Theme.of(context).textTheme.bodyLarge),
-                  ],
-                ),
-              )
+              Row(
+                children: [
+                  Text(' Address:',
+                      style: Theme.of(context).textTheme.bodySmall),
+                  Text(widget.data["product_shop_address"],
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.bodyLarge),
+                ],
+              ),
+              Row(
+                children: [
+                  Text(' time left:',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.bodySmall),
+                  Text(' 2 days', style: Theme.of(context).textTheme.bodyLarge),
+                ],
+              ),
             ],
           ),
         )

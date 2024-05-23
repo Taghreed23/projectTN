@@ -170,13 +170,18 @@ class _HerzontalOfferTileState extends State<HerzontalOfferTile> {
                                 bottomRight:
                                     Radius.circular(TSizes.productImageRadius),
                               )),
-                          child: const SizedBox(
+                          child:  SizedBox(
                             width: TSizes.iconlg * 1.2,
                             height: TSizes.iconlg * 1.2,
                             child: Center(
-                              child: Icon(
-                                Iconsax.add,
-                                color: Colors.white,
+                              child: IconButton(
+                                icon: Icon(
+                                  Iconsax.add,
+                                  color: Colors.white,
+                                ),
+                                onPressed: () {
+                                  
+                                   },
                               ),
                             ),
                           ),

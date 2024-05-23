@@ -46,7 +46,7 @@ class TRoundImage extends StatelessWidget {
           borderRadius: applyImageRadius
               ? BorderRadius.circular(borderRadius)
               : BorderRadius.zero,
-          child: Image(fit: fit, image: AssetImage(imageUrl)
+          child: Image(fit: fit, image: NetworkImage(imageUrl)
               // isNetworkImage
               //   ? NetworkImage(imageUrl)
               //    : AssetImage(imageUrl) as ImageProvider,
