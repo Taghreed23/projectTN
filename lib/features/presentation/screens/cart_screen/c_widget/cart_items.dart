@@ -5,6 +5,7 @@ import 'package:food_saver/common/widgets/images/t_rounded_image.dart';
 import 'package:food_saver/data/network/api.dart';
 import 'package:food_saver/features/presentation/screens/cart_screen/c_widget/product_text_title.dart';
 import 'package:food_saver/features/presentation/screens/cart_screen/c_widget/t_brand_text_with_icon.dart';
+import 'package:food_saver/features/presentation/screens/offer_card_screen/views/offer_detalies_screen.dart';
 import 'package:food_saver/utils/constants/colors.dart';
 import 'package:food_saver/utils/constants/image_strings.dart';
 import 'package:food_saver/utils/constants/sizes.dart';
@@ -27,6 +28,9 @@ class _CartItemState extends State<CartItem> {
     return Row(
       children: [
         TRoundImage(
+          onPressed: () {
+            OfferDetalies(ProductId: widget.data["id"]);
+          },
           imageUrl: "${Api.baseUrl2}${widget.data['product_image']}",
           width: 80,
           height: 80,
@@ -67,7 +71,8 @@ class _CartItemState extends State<CartItem> {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: Theme.of(context).textTheme.bodySmall),
-                  Text(' 2 days', style: Theme.of(context).textTheme.bodyLarge),
+                  Text(widget.data["product_expire_time_humified"],
+                      style: Theme.of(context).textTheme.bodyLarge),
                 ],
               ),
             ],

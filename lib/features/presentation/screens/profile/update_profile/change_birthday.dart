@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
@@ -8,36 +7,36 @@ import 'package:food_saver/features/authentications/widgets/my_button.dart';
 import 'package:food_saver/utils/constants/sizes.dart';
 import 'package:food_saver/utils/constants/text_strings.dart';
 
-class changePhoneN0 extends StatefulWidget {
-  changePhoneN0(
+class changeBirth extends StatefulWidget {
+  changeBirth(
       {Key? key,
       required this.email,
-      required this.birthday,
+      required this.PhoneNO,
       required this.gender})
       : super(key: key);
   String email;
   String gender;
 
-  String birthday;
+  String PhoneNO;
 
   @override
-  State<changePhoneN0> createState() => _changeNameState();
+  State<changeBirth> createState() => _changeBirthState();
 }
 
-class _changeNameState extends State<changePhoneN0> {
+class _changeBirthState extends State<changeBirth> {
   ProfileUpdateRequest _UpdateProfileData = ProfileUpdateRequest();
-  GlobalKey<FormState> formNameKey = GlobalKey<FormState>();
+  GlobalKey<FormState> formBirthKey = GlobalKey<FormState>();
 
-  TextEditingController PhoneNoUpdatController = TextEditingController();
+  TextEditingController BirthUpdatController = TextEditingController();
   late TextEditingController emailController;
   late TextEditingController genderController;
-  late TextEditingController birthdayController;
+  late TextEditingController PhoneNOController;
 
   @override
   void initState() {
     emailController = TextEditingController(text: widget.email);
     genderController = TextEditingController(text: widget.gender);
-    birthdayController = TextEditingController(text: widget.birthday);
+    PhoneNOController = TextEditingController(text: widget.PhoneNO);
     super.initState();
   }
 
@@ -53,7 +52,7 @@ class _changeNameState extends State<changePhoneN0> {
           },
         ),
         title: Text(
-          'Change Phone Number',
+          'Change Birth Date',
           style: Theme.of(context).textTheme.headlineSmall,
         ),
       ),
@@ -63,27 +62,27 @@ class _changeNameState extends State<changePhoneN0> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Use real Phone Number for easy verification . ',
+              'Use real Birth date for easy verification . ',
               style: Theme.of(context).textTheme.labelMedium,
             ),
             const SizedBox(
               height: TSizes.spaceBtwSections,
             ),
             Form(
-                key: formNameKey,
+                key: formBirthKey,
                 child: Column(
                   children: [
                     TextFormField(
-                      controller: PhoneNoUpdatController,
+                      controller: BirthUpdatController,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Please enter your New Number';
+                          return 'Please enter your Birth Date';
                         }
                         return null;
                       },
                       expands: false,
                       decoration: const InputDecoration(
-                          labelText: ' New phone Number',
+                          labelText: ' My Birth Date',
                           prefixIcon: Icon(Iconsax.user)),
                     )
                   ],
@@ -97,11 +96,11 @@ class _changeNameState extends State<changePhoneN0> {
                   onPressed: () {
                     _UpdateProfileData.updateProfileData(
                       email: emailController.text,
-                      phone_number: PhoneNoUpdatController.text,
-                      birthday: birthdayController.text,
+                      phone_number: PhoneNOController.text,
+                      birthday: BirthUpdatController.text,
                       gender: genderController.text,
                     );
-                    
+                    setState(() {});
                   },
                   label: "Save",
                 ))

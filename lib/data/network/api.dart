@@ -7,5 +7,6 @@ class Api {
   static const String prudoct = '${baseUrl}/products/?id=';
   static const String wishlist = '${baseUrl}/wishlist/';
   static const String cart = '${baseUrl}/cart/';
+    static const String quantity = '${baseUrl}/modify_cart/';
   static const String category = '${baseUrl}/products/?category_id=';
 }

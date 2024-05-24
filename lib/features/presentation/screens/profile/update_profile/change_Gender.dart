@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
@@ -8,35 +7,35 @@ import 'package:food_saver/features/authentications/widgets/my_button.dart';
 import 'package:food_saver/utils/constants/sizes.dart';
 import 'package:food_saver/utils/constants/text_strings.dart';
 
-class changePhoneN0 extends StatefulWidget {
-  changePhoneN0(
+class changeGender extends StatefulWidget {
+  changeGender(
       {Key? key,
       required this.email,
       required this.birthday,
-      required this.gender})
+      required this.phoneNo})
       : super(key: key);
   String email;
-  String gender;
+  String phoneNo;
 
   String birthday;
 
   @override
-  State<changePhoneN0> createState() => _changeNameState();
+  State<changeGender> createState() => _changeGenderState();
 }
 
-class _changeNameState extends State<changePhoneN0> {
+class _changeGenderState extends State<changeGender> {
   ProfileUpdateRequest _UpdateProfileData = ProfileUpdateRequest();
-  GlobalKey<FormState> formNameKey = GlobalKey<FormState>();
+  GlobalKey<FormState> formGenderKey = GlobalKey<FormState>();
 
-  TextEditingController PhoneNoUpdatController = TextEditingController();
+  TextEditingController GenderUpdatController = TextEditingController();
   late TextEditingController emailController;
-  late TextEditingController genderController;
+  late TextEditingController PhoneNOController;
   late TextEditingController birthdayController;
 
   @override
   void initState() {
     emailController = TextEditingController(text: widget.email);
-    genderController = TextEditingController(text: widget.gender);
+    PhoneNOController = TextEditingController(text: widget.phoneNo);
     birthdayController = TextEditingController(text: widget.birthday);
     super.initState();
   }
@@ -53,7 +52,7 @@ class _changeNameState extends State<changePhoneN0> {
           },
         ),
         title: Text(
-          'Change Phone Number',
+          'My Gender',
           style: Theme.of(context).textTheme.headlineSmall,
         ),
       ),
@@ -63,27 +62,27 @@ class _changeNameState extends State<changePhoneN0> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Use real Phone Number for easy verification . ',
+              'Use real Gender for easy verification . ',
               style: Theme.of(context).textTheme.labelMedium,
             ),
             const SizedBox(
               height: TSizes.spaceBtwSections,
             ),
             Form(
-                key: formNameKey,
+                key: formGenderKey,
                 child: Column(
                   children: [
                     TextFormField(
-                      controller: PhoneNoUpdatController,
+                      controller: GenderUpdatController,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Please enter your New Number';
+                          return 'Please enter Gender';
                         }
                         return null;
                       },
                       expands: false,
                       decoration: const InputDecoration(
-                          labelText: ' New phone Number',
+                          labelText: ' My Gender',
                           prefixIcon: Icon(Iconsax.user)),
                     )
                   ],
@@ -97,11 +96,11 @@ class _changeNameState extends State<changePhoneN0> {
                   onPressed: () {
                     _UpdateProfileData.updateProfileData(
                       email: emailController.text,
-                      phone_number: PhoneNoUpdatController.text,
+                      phone_number: PhoneNOController.text,
                       birthday: birthdayController.text,
-                      gender: genderController.text,
+                      gender: GenderUpdatController.text,
                     );
-                    
+                    setState(() {});
                   },
                   label: "Save",
                 ))

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:food_saver/data/network/api.dart';
+import 'package:food_saver/features/presentation/screens/profile/update_profile/change_Gender.dart';
+import 'package:food_saver/features/presentation/screens/profile/update_profile/change_birthday.dart';
+import 'package:food_saver/features/presentation/screens/profile/update_profile/change_email.dart';
 import 'package:food_saver/features/presentation/screens/profile/update_profile/changephoNO_name.dart';
 import 'package:food_saver/features/presentation/screens/profile/widgets/section_handealing.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
@@ -86,7 +89,23 @@ class _profileCardState extends State<profileCard> {
             icon: Iconsax.copy,
           ),
           ProfileMenu(
-              onPressed: () {}, title: 'Email', value: widget.data["email"]),
+              onPressed: () {
+                setState(() {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return changeEmail(
+                          birthday: widget.data["birthday"],
+                          gender: widget.data["gender"],
+                          phoneNo: widget.data["phone_number"],
+                        );
+                      },
+                    ),
+                  );
+                });
+              },
+              title: 'Email',
+              value: widget.data["email"]),
           ProfileMenu(
             title: 'Phone Number',
             value: widget.data["phone_number"],
@@ -99,16 +118,43 @@ class _profileCardState extends State<profileCard> {
                       gender: widget.data["gender"],
                       email: widget.data["email"],
                     );
-                    setState(() {});
+                    
                   },
                 ),
               );
             },
           ),
           ProfileMenu(
-              onPressed: () {}, title: 'Gender', value: widget.data["gender"]),
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return changeGender(
+                        birthday: widget.data["birthday"],
+                        email: widget.data["email"],
+                        phoneNo: widget.data["phone_number"],
+                      );
+                    },
+                  ),
+                );
+              },
+              title: 'Gender',
+              value: widget.data["gender"]),
           ProfileMenu(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return changeBirth(
+                        email: widget.data["email"],
+                        gender: widget.data["gender"],
+                        PhoneNO: widget.data["phone_number"],
+                      );
+                      setState(() {});
+                    },
+                  ),
+                );
+              },
               title: 'Date of Birth',
               value: widget.data["birthday"]),
           const Divider(),

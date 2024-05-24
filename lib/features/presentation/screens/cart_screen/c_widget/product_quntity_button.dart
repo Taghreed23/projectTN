@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_saver/data/network/cart/quantiti_change_request.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:food_saver/features/presentation/screens/cart_screen/c_widget/t_circular_icon.dart';
 import 'package:food_saver/utils/constants/colors.dart';
@@ -16,6 +17,7 @@ class ProductQuantityaddRemoveButton extends StatefulWidget {
 
 class _ProductQuantityaddRemoveButtonState
     extends State<ProductQuantityaddRemoveButton> {
+  updateQuantityRequest _changeQuantity = updateQuantityRequest();
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -27,6 +29,11 @@ class _ProductQuantityaddRemoveButtonState
           mainAxisSize: MainAxisSize.min,
           children: [
             TCircularIcon(
+              onPressed: () {
+                _changeQuantity.updateQuantity(
+                    operation: '-',
+                    product_id: widget.quantity["product_id"].toString());
+              },
               icon: Iconsax.minus,
               width: 32,
               height: 32,
@@ -48,7 +55,12 @@ class _ProductQuantityaddRemoveButtonState
             const SizedBox(
               height: TSizes.spaceBtwItems,
             ),
-            const TCircularIcon(
+            TCircularIcon(
+              onPressed: () {
+                _changeQuantity.updateQuantity(
+                    operation: '+',
+                    product_id: widget.quantity["quantity"].toString());
+              },
               icon: Iconsax.add,
               width: 32,
               height: 32,
