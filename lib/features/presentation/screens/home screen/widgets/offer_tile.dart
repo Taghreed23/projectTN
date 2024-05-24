@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_saver/data/network/cart/add_to%20_cart.dart';
 import 'package:food_saver/data/network/wishlist/add_wishlist_request.dart';
 import 'package:food_saver/features/presentation/model/offer_model.dart';
 import 'package:food_saver/features/presentation/screens/offer_card_screen/views/offer_detalies_screen.dart';
@@ -26,6 +27,7 @@ class HerzontalOfferTile extends StatefulWidget {
 
 class _HerzontalOfferTileState extends State<HerzontalOfferTile> {
   WishlistAddRequest _WishlistAdd = WishlistAddRequest();
+  CartAddRequest _cartAddRequest = CartAddRequest();
   @override
   Widget build(BuildContext context) {
     print(widget.data);
@@ -170,7 +172,7 @@ class _HerzontalOfferTileState extends State<HerzontalOfferTile> {
                                 bottomRight:
                                     Radius.circular(TSizes.productImageRadius),
                               )),
-                          child:  SizedBox(
+                          child: SizedBox(
                             width: TSizes.iconlg * 1.2,
                             height: TSizes.iconlg * 1.2,
                             child: Center(
@@ -180,8 +182,9 @@ class _HerzontalOfferTileState extends State<HerzontalOfferTile> {
                                   color: Colors.white,
                                 ),
                                 onPressed: () {
-                                  
-                                   },
+                                  _cartAddRequest.addToCart(
+                                      id: widget.data["id"].toString());
+                                },
                               ),
                             ),
                           ),

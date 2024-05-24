@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:food_saver/data/network/cart/add_to%20_cart.dart';
 import 'package:food_saver/features/presentation/model/offer_model.dart';
 import 'package:food_saver/features/presentation/screens/offer_card_screen/views/offer_detalies_screen.dart';
 import 'package:food_saver/utils/constants/sizes.dart';
@@ -22,6 +23,8 @@ class cateoryTail extends StatefulWidget {
 
 class _cateoryTailState extends State<cateoryTail> {
   WishlistAddRequest _WishlistAdd = WishlistAddRequest();
+  CartAddRequest _cartAddRequest = CartAddRequest();
+
   @override
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
@@ -103,13 +106,19 @@ class _cateoryTailState extends State<cateoryTail> {
                         topLeft: Radius.circular(TSizes.cardRadiuslg),
                         bottomRight: Radius.circular(TSizes.productImageRadius),
                       )),
-                  child: const SizedBox(
+                  child: SizedBox(
                     width: TSizes.iconlg * 1.2,
                     height: TSizes.iconlg * 1.2,
                     child: Center(
-                      child: Icon(
-                        Iconsax.add,
-                        color: Colors.white,
+                      child: IconButton(
+                        icon: Icon(
+                          Iconsax.add,
+                          color: Colors.white,
+                        ),
+                        onPressed: () {
+                          _cartAddRequest.addToCart(
+                              id: widget.data["id"].toString());
+                        },
                       ),
                     ),
                   ),

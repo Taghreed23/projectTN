@@ -8,9 +8,9 @@ import 'package:food_saver/features/presentation/screens/wishlist_screen.dart';
 import 'package:get/get.dart';
 import 'package:food_saver/features/authentications/screens/login/login.dart';
 import 'package:food_saver/utils/theme/custom_themes/theme.dart';
-
+import 'package:lottie/lottie.dart';
 import 'package:food_saver/features/presentation/screens/home screen/home_page.dart';
-
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:food_saver/features/presentation/screens/cart_screen/cart_screen_items.dart';
 import 'package:food_saver/features/presentation/screens/cart_screen/c_widget/cart_items.dart';
 import 'package:food_saver/customer features/presentation/Screens/add_offer.dart';
@@ -41,11 +41,7 @@ class _AppState extends State<App> {
       },
       initialRoute: 'SignupScreen',*/
 
-      home: token == ""
-          ? loginScreen()
-          : Scaffold(
-              bottomNavigationBar: My_navigationBar(),
-            ),
+      home: SplashSceen(),
       /*routes: {
         'homeScreen': (context) => homeScreen(),
         'favListView': (context) => favListView(),
@@ -53,6 +49,36 @@ class _AppState extends State<App> {
       },
       debugShowCheckedModeBanner: false,
       initialRoute: 'homeScreen',*/
+    );
+  }
+}
+
+class SplashSceen extends StatelessWidget {
+  SplashSceen({super.key});
+  final token =
+      sl<MySharedPrefInterface>().getString(key: MySharedKeys.apiToken);
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedSplashScreen(
+      splash: Column(
+        children: [
+          Expanded(
+              child: LottieBuilder.asset(
+                  'assets/splash_screen/VID 20240516 WA0044.json')),
+        ],
+      ),
+      nextScreen: token == ""
+          ? loginScreen()
+          : Scaffold(
+              bottomNavigationBar: My_navigationBar(),
+            ),
+      backgroundColor: Colors.black,
+      // THelperFunctions.isDarkMode(context)
+      //     ? TColors.darkerGrey
+      //     : TColors.light,
+
+      splashIconSize: 1000,
+      animationDuration: const Duration(seconds: 3),
     );
   }
 }

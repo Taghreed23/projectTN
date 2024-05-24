@@ -8,6 +8,7 @@ environment:
 
 #--------------- PACKAGES ------------------#
 dependencies:
+  animated_splash_screen: ^1.3.0
   bloc: ^8.1.4
   capped_progress_indicator: ^0.0.2
   carousel_slider: ^4.2.1
@@ -37,9 +38,16 @@ dependencies:
   url_launcher: ^6.2.4
 
 dev_dependencies:
+  flutter_launcher_icons: ^0.13.1
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
+  lottie: ^3.1.2
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/logos/IMG-20240520-WA0012.png"
+  min_sdk_android: 21
 
 flutter:
   uses-material-design: true
@@ -61,6 +69,9 @@ flutter:
     - assets\categories\meals.jpg
     - assets/images/foodsaving card.jpeg
     - assets/images/cupcake.jpg
+    - assets/logos/IMG-20240520-WA0012.png
+    - assets/splash_screen/VID 20240516 WA0043.json
+    - assets/splash_screen/VID 20240516 WA0044.json
 
   #--------------- LOCAL FONTS ------------------#
   fonts:

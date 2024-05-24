@@ -178,7 +178,9 @@ class _OfferDetaliesState extends State<OfferDetalies> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            AddToCart(),
+            AddToCart(
+              product_id: widget.ProductId.toString(),
+            ),
             FavoriteButton(),
           ],
         ),
