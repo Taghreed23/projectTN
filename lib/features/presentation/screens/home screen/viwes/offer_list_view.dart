@@ -121,8 +121,7 @@ class _OfferListViewState extends State<OfferListView> {
                       return Padding(
                         padding: const EdgeInsets.only(right: 14),
                         child: HerzontalOfferTile(
-                          color: Colors.red,
-                          icon: Iconsax.heart5,
+                          
                           data: snapshot.data[index],
                         ),
                       );

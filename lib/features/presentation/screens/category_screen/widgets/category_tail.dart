@@ -24,10 +24,19 @@ class cateoryTail extends StatefulWidget {
 class _cateoryTailState extends State<cateoryTail> {
   WishlistAddRequest _WishlistAdd = WishlistAddRequest();
   CartAddRequest _cartAddRequest = CartAddRequest();
+  Color _iconColor = Colors.blueGrey;
 
   @override
   Widget build(BuildContext context) {
+    final VoidCallback onPressed = () {
+      setState(() {
+        _WishlistAdd.addToWishlist(id: '${widget.data["id"]}');
+        _iconColor = TColors.primary; // Change this to your desired color
+      });
+    };
+
     final dark = THelperFunctions.isDarkMode(context);
+
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(
@@ -44,7 +53,9 @@ class _cateoryTailState extends State<cateoryTail> {
         padding: const EdgeInsets.only(top: 8, left: 11, right: 11),
         child: Container(
           decoration: BoxDecoration(
-            color: dark ? Colors.white : TColors.light,
+            color: THelperFunctions.isDarkMode(context)
+                ? TColors.darkerGrey
+                : TColors.light,
             borderRadius: BorderRadius.circular(10.0),
             boxShadow: [
               BoxShadow(
@@ -90,7 +101,7 @@ class _cateoryTailState extends State<cateoryTail> {
                       ),
                       Text(
                         '${widget.data["price"].toString()} E£',
-                        style: TextStyle(color: Colors.black),
+                        style: Theme.of(context).textTheme.labelLarge,
                       )
                     ],
                   ),
@@ -125,14 +136,14 @@ class _cateoryTailState extends State<cateoryTail> {
                 ),
               ),
               Positioned(
-                  top: 1,
-                  right: 0,
-                  child: TCircularIcon(
-                      onPressed: () {
-                        _WishlistAdd.addToWishlist(id: '${widget.data["id"]}');
-                      },
-                      icon: Iconsax.heart,
-                      color: Colors.blueGrey))
+                top: 1,
+                right: 0,
+                child: TCircularIcon(
+                  onPressed: onPressed,
+                  icon: Iconsax.heart5,
+                  color: _iconColor,
+                ),
+              )
             ],
           ),
         ),

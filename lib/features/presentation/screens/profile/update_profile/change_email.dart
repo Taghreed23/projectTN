@@ -47,7 +47,7 @@ class _changeEmailState extends State<changeEmail> {
           icon: Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);
-            setState(() {});
+          
             // Navigate back to the previous screen
           },
         ),

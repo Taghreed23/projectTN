@@ -1,7 +1,8 @@
 // import 'package:flutter/material.dart';
 // import 'package:flutter/rendering.dart';
 // import 'package:food_saver/features/presentation/screens/category_screen/widgets/category_tail.dart';
-// import 'package:food_saver/features/presentation/screens/profile/profile_card.dart';
+
+// import 'package:food_saver/features/presentation/screens/profile/widgets/profile_card.dart';
 
 // import 'package:food_saver/utils/constants/sizes.dart';
 

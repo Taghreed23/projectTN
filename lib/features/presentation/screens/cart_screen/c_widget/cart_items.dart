@@ -67,12 +67,16 @@ class _CartItemState extends State<CartItem> {
               ),
               Row(
                 children: [
-                  Text(' time left:',
+                  Text('end at:',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: Theme.of(context).textTheme.bodySmall),
-                  Text(widget.data["product_expire_time_humified"],
-                      style: Theme.of(context).textTheme.bodyLarge),
+                  Text(
+                    widget.data["product_expire_time_humified"],
+                    style: Theme.of(context).textTheme.bodySmall,
+                    maxLines: 2,
+                    overflow: TextOverflow.fade,
+                  ),
                 ],
               ),
             ],

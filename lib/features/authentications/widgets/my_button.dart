@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class My_Button extends StatelessWidget {
-  final void Function() onPressed;
+  final VoidCallback? onPressed;
   final bool isLoading;
   final String label;
   const My_Button(

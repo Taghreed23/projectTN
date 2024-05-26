@@ -18,10 +18,10 @@ class ProfileListBuilder extends StatefulWidget {
   ProfileListBuilder({super.key});
 
   @override
-  State<ProfileListBuilder> createState() => _CategoryListState();
+  State<ProfileListBuilder> createState() => _ProfileListState();
 }
 
-class _CategoryListState extends State<ProfileListBuilder> {
+class _ProfileListState extends State<ProfileListBuilder> {
   ProfileRequest _ProfileData = ProfileRequest();
   var future;
   @override

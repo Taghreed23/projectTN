@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_saver/data/network/cart/add_to%20_cart.dart';
 import 'package:food_saver/data/network/wishlist/add_wishlist_request.dart';
 import 'package:food_saver/data/network/wishlist/del_wishlist_request.dart';
 import 'package:food_saver/features/presentation/model/offer_model.dart';
@@ -13,14 +14,19 @@ import 'package:iconsax/iconsax.dart';
 
 import 'package:food_saver/data/network/home_request.dart';
 import 'package:food_saver/data/network/api.dart';
-import 'package:food_saver/features/presentation/screens/wishlist_screen/provider/provider_state.dart';
+
 import 'package:food_saver/data/network/wishlist/wishlist_request.dart';
 import 'package:provider/provider.dart';
 
 // cached network image
 class WishlistTail extends StatefulWidget {
   WishlistTail(
-      {super.key, required this.color, required this.icon, required this.data});
+      {super.key,
+      required this.color,
+      required this.icon,
+      required this.data,
+      required this.onPressed});
+  final VoidCallback? onPressed;
   final Color color;
   final IconData icon;
   final Map<String, dynamic> data;
@@ -32,11 +38,11 @@ class WishlistTail extends StatefulWidget {
 class _HerzontalOfferTileState extends State<WishlistTail> {
   WishlistDelRequest _WishlistDel = WishlistDelRequest();
   WishlistRequest _wishlistData = WishlistRequest();
+  CartAddRequest _cartAddRequest = CartAddRequest();
   @override
   Widget build(BuildContext context) {
-    print(widget.data);
     final dark = THelperFunctions.isDarkMode(context);
-    final myState = Provider.of<MyState>(context);
+
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(
@@ -91,31 +97,30 @@ class _HerzontalOfferTileState extends State<WishlistTail> {
                 ),
 
                 // time tag
-                Positioned(
-                  top: 12,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: TSizes.sm, vertical: TSizes.xs),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      color: TColors.secondry.withOpacity(0.8),
-                    ),
-                    child: Text('',
-                        //widget.data["expire_time_humified"],
-                        maxLines: 1,
-                        style: TextStyle(color: Colors.black, fontSize: 7)),
-                  ),
-                ),
+                // Positioned(
+                //   top: 12,
+                //   child: Container(
+                //     padding: const EdgeInsets.symmetric(
+                //         horizontal: TSizes.sm, vertical: TSizes.xs),
+                //     decoration: BoxDecoration(
+                //       borderRadius: BorderRadius.circular(16),
+                //       color: TColors.secondry.withOpacity(0.8),
+                //     ),
+                //     child: Text(widget.data["expire_time_humified"],
+                //         maxLines: 1,
+                //         style: TextStyle(color: Colors.black, fontSize: 7)),
+                //   ),
+                // ),
 
                 // fav
                 Positioned(
                   top: 0,
                   right: 0,
                   child: TCircularIcon(
-                      onPressed: () {
-                        _WishlistDel.delFromwishlist(
-                            id: widget.data["product_id"]);
-                      },
+                      onPressed: widget.onPressed,
+                      // _WishlistDel.delFromwishlist(
+                      //     id: widget.data["product_id"]);
+
                       icon: widget.icon,
                       color: widget.color),
                 )
@@ -179,13 +184,22 @@ class _HerzontalOfferTileState extends State<WishlistTail> {
                                 bottomRight:
                                     Radius.circular(TSizes.productImageRadius),
                               )),
-                          child: const SizedBox(
+                          child: SizedBox(
                             width: TSizes.iconlg * 1.2,
                             height: TSizes.iconlg * 1.2,
                             child: Center(
-                              child: Icon(
-                                Iconsax.add,
-                                color: Colors.white,
+                              child: IconButton(
+                                icon: Icon(
+                                  Iconsax.add,
+                                  color: Colors.white,
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    _cartAddRequest.addToCart(
+                                        id: widget.data["product_id"]
+                                            .toString());
+                                  });
+                                },
                               ),
                             ),
                           ),

@@ -13,6 +13,15 @@ class categoryScreen extends StatelessWidget {
     final darkMode = THelperFunctions.isDarkMode(context);
     return Scaffold(
       appBar: AppBar(
+           leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          color: darkMode ? TColors.light :TColors.primary,
+          onPressed: () {
+            Navigator.pop(context);
+
+            // Navigate back to the previous screen
+          },
+        ),
         toolbarHeight: 70,
         centerTitle: true,
         elevation: 0,

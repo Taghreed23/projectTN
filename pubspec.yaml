@@ -16,6 +16,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   curved_navigation_bar: ^1.0.3
   dio: ^5.4.3+1
+  easy_refresh: ^3.4.0
   firebase_auth: ^4.16.0
   firebase_core: ^2.24.2
   flutter:
@@ -42,7 +43,8 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
-  lottie: ^3.1.2
+  lottie: ^2.7.0
+
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
@@ -72,6 +74,7 @@ flutter:
     - assets/logos/IMG-20240520-WA0012.png
     - assets/splash_screen/VID 20240516 WA0043.json
     - assets/splash_screen/VID 20240516 WA0044.json
+    - assets/images/right sign.png
 
   #--------------- LOCAL FONTS ------------------#
   fonts:

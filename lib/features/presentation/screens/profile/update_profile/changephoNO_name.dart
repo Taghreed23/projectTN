@@ -101,10 +101,18 @@ class _changeNameState extends State<changePhoneN0> {
                       birthday: birthdayController.text,
                       gender: genderController.text,
                     );
-                    
                   },
                   label: "Save",
-                ))
+                )),
+            const SizedBox(
+              height: TSizes.spaceBtwSections,
+            ),
+            Center(
+              child: Text(
+                'Please refresh your Profile Screen . ',
+                style: Theme.of(context).textTheme.labelMedium,
+              ),
+            ),
           ],
         ),
       ),

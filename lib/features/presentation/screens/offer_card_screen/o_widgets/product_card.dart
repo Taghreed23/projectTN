@@ -100,7 +100,6 @@ class _productCardState extends State<productCard> {
                   'Offer Expired at :${widget.data["expire_time_humified"]}', //address
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: Colors.black,
                     fontSize: 14,
                   ),
                 ),

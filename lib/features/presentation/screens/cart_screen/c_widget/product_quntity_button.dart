@@ -1,15 +1,23 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:food_saver/data/network/cart/quantiti_change_request.dart';
 import 'package:iconsax/iconsax.dart';
+
+import 'package:food_saver/data/network/cart/quantiti_change_request.dart';
 import 'package:food_saver/features/presentation/screens/cart_screen/c_widget/t_circular_icon.dart';
 import 'package:food_saver/utils/constants/colors.dart';
 import 'package:food_saver/utils/constants/sizes.dart';
 import 'package:food_saver/utils/helpers/helper_functions.dart';
 
 class ProductQuantityaddRemoveButton extends StatefulWidget {
-  ProductQuantityaddRemoveButton({super.key, required this.quantity});
+  ProductQuantityaddRemoveButton({
+    Key? key,
+    required this.quantity,
+    required this.onPreespluss,
+    required this.onPreessmin,
+  }) : super(key: key);
   final Map<dynamic, dynamic> quantity;
-
+  final VoidCallback? onPreespluss;
+  final VoidCallback? onPreessmin;
   @override
   State<ProductQuantityaddRemoveButton> createState() =>
       _ProductQuantityaddRemoveButtonState();
@@ -29,11 +37,12 @@ class _ProductQuantityaddRemoveButtonState
           mainAxisSize: MainAxisSize.min,
           children: [
             TCircularIcon(
-              onPressed: () {
-                _changeQuantity.updateQuantity(
-                    operation: '-',
-                    product_id: widget.quantity["product_id"].toString());
-              },
+              onPressed:widget.onPreessmin,
+              // () {
+              //   _changeQuantity.updateQuantity(
+              //       operation: '-',
+              //       product_id: widget.quantity["product_id"].toString());
+              // },
               icon: Iconsax.minus,
               width: 32,
               height: 32,
@@ -56,11 +65,11 @@ class _ProductQuantityaddRemoveButtonState
               height: TSizes.spaceBtwItems,
             ),
             TCircularIcon(
-              onPressed: () {
-                _changeQuantity.updateQuantity(
-                    operation: '+',
-                    product_id: widget.quantity["quantity"].toString());
-              },
+              onPressed: widget.onPreespluss,
+              // _changeQuantity.updateQuantity(
+              //     operation: '+',
+              //     product_id: widget.quantity["quantity"].toString());
+
               icon: Iconsax.add,
               width: 32,
               height: 32,

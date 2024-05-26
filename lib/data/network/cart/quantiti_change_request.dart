@@ -7,17 +7,14 @@ import 'package:food_saver/data/network/api.dart';
 import 'package:dio/dio.dart';
 
 class updateQuantityRequest {
-  Future<void> updateQuantity({
-   required String operation,
-   required String product_id
-  }) async {
+  Future<void> updateQuantity(
+      {required String operation, required String product_id}) async {
     var headers = {
-      'Authorization': 'Token ea14ef561d160843f22f97621dd1e6995e72f1c0'
+      'Authorization':
+          'Token ${sl<MySharedPrefInterface>().getString(key: MySharedKeys.apiToken)}'
     };
-  var data = FormData.fromMap({
-  'operation': operation,
-  'product_id': product_id
-});
+    var data =
+        FormData.fromMap({'operation': operation, 'product_id': product_id});
 
     var dio = Dio();
     await dio.request(

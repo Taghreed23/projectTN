@@ -15,10 +15,8 @@ import 'package:food_saver/data/network/api.dart';
 
 // cached network image
 class HerzontalOfferTile extends StatefulWidget {
-  HerzontalOfferTile(
-      {super.key, required this.color, required this.icon, required this.data});
-  final Color color;
-  final IconData icon;
+  HerzontalOfferTile({super.key, required this.data});
+
   final Map<dynamic, dynamic> data;
 
   @override
@@ -28,10 +26,17 @@ class HerzontalOfferTile extends StatefulWidget {
 class _HerzontalOfferTileState extends State<HerzontalOfferTile> {
   WishlistAddRequest _WishlistAdd = WishlistAddRequest();
   CartAddRequest _cartAddRequest = CartAddRequest();
+  Color _iconColor = Colors.blueGrey;
   @override
   Widget build(BuildContext context) {
-    print(widget.data);
+    final VoidCallback onPressed = () {
+      setState(() {
+        _WishlistAdd.addToWishlist(id: '${widget.data["id"]}');
+        _iconColor = TColors.primary; // Change this to your desired color
+      });
+    };
     final dark = THelperFunctions.isDarkMode(context);
+
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(
@@ -106,12 +111,9 @@ class _HerzontalOfferTileState extends State<HerzontalOfferTile> {
                     top: 0,
                     right: 0,
                     child: TCircularIcon(
-                        onPressed: () {
-                          _WishlistAdd.addToWishlist(
-                              id: widget.data["id"].toString());
-                        },
-                        icon: widget.icon,
-                        color: widget.color))
+                        onPressed: onPressed,
+                        icon: Iconsax.heart5,
+                        color: _iconColor))
               ]),
             ),
             const SizedBox(
