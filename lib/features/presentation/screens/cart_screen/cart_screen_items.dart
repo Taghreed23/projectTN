@@ -104,7 +104,6 @@ class _CartScreenState extends State<CartScreen> {
                         await Future.delayed(const Duration(seconds: 1));
                         setState(() {
                           future = _carttData.getCartData();
-                          ;
                         });
                       },
                       child: ListView.separated(
@@ -195,6 +194,7 @@ class _CartScreenState extends State<CartScreen> {
                     },
                   ),
                 );
+                _clearCart();
               },
               child: Text('Place Order '),
               style: ButtonStyle(

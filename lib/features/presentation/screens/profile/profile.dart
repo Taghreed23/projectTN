@@ -47,7 +47,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           elevation: 0,
           backgroundColor: Colors.transparent,
           title: Text(
-            'MY Profile',
+            'My Profile',
             style: TextStyle(color: darkMode ? Colors.white : Colors.black),
           ),
         ),

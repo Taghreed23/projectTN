@@ -43,9 +43,21 @@ class _previousOrderTileState extends State<previousTile> {
                 width: 16.0,
               ),
               Center(
-                child: Text(
-                  '${widget.data["start_cart"] ?? ''}',
-                  style: Theme.of(context).textTheme.labelLarge,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'My status is:${widget.data["status"]}',
+                      style: Theme.of(context).textTheme.labelLarge,
+                    ),
+                    SizedBox(
+                      height: 4.0,
+                    ),
+                    Text(
+                      'Date: ${DateFormat("yyyy-MM-dd").format(DateTime.parse(widget.data["start_cart"]))} ${DateFormat.jm().format(DateTime.parse(widget.data["start_cart"]))}',
+                      style: Theme.of(context).textTheme.labelLarge,
+                    ),
+                  ],
                 ),
               )
             ],
