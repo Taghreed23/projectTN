@@ -102,7 +102,8 @@ class _HerzontalOfferTileState extends State<HerzontalOfferTile> {
                       borderRadius: BorderRadius.circular(16),
                       color: TColors.secondry.withOpacity(0.8),
                     ),
-                    child: Text(widget.data["expire_time_humified"],
+                    child: Text(
+                        "ends after:${widget.data["expire_time_humified"]}",
                         maxLines: 1,
                         style: TextStyle(color: Colors.black, fontSize: 7)),
                   ),

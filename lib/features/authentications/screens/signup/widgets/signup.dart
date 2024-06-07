@@ -126,6 +126,7 @@ class SignupScreen extends StatelessWidget {
                             enabled: false,
                             decoration: const InputDecoration(
                               labelText: 'Gender',
+                            
                             ),
                           ),
                         ),
@@ -144,6 +145,8 @@ class SignupScreen extends StatelessWidget {
                           expands: false,
                           decoration: const InputDecoration(
                             labelText: "Birthday",
+                            hintText: '2002-03-12',
+                            hintStyle: TextStyle(fontSize: 11),
                             prefixIcon: Icon(Iconsax.calendar),
                           ),
                         ))
@@ -209,7 +212,7 @@ class SignupScreen extends StatelessWidget {
                       expands: false,
                       decoration: const InputDecoration(
                         labelText: TTexts.password,
-                        prefixIcon: Icon(Iconsax.eye_slash),
+                        prefixIcon: Icon(Iconsax.eye),
                       ),
                     ),
                     const SizedBox(

@@ -33,7 +33,7 @@ class _CartItemState extends State<CartItem> {
           },
           imageUrl: "${Api.baseUrl2}${widget.data['product_image']}",
           width: 80,
-          height: 80,
+          height: 90,
           padding: const EdgeInsets.all(TSizes.sm),
           backgroundColor: THelperFunctions.isDarkMode(context)
               ? TColors.darkerGrey
@@ -47,30 +47,31 @@ class _CartItemState extends State<CartItem> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TBrandTitleWithVerifiedIcon(
-                  title: widget.data["product_shop_name"]!),
               Flexible(
                 child: TProductTitleText(
                   title: widget.data["product_name"],
                   maxLines: 1,
                 ),
               ),
-              Row(
+              TBrandTitleWithVerifiedIcon(
+                  title: widget.data["product_shop_name"]!),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(' Address:',
-                      style: Theme.of(context).textTheme.bodySmall),
+                      style: Theme.of(context).textTheme.bodyMedium),
                   Text(widget.data["product_shop_address"],
-                      maxLines: 1,
+                      maxLines: 4,
                       overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.bodyLarge),
+                      style: Theme.of(context).textTheme.bodySmall),
                 ],
               ),
               Row(
                 children: [
-                  Text('end at:',
+                  Text('available for: ',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.bodySmall),
+                      style: Theme.of(context).textTheme.bodyMedium),
                   Text(
                     widget.data["product_expire_time_humified"],
                     style: Theme.of(context).textTheme.bodySmall,

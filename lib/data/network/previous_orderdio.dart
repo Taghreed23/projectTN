@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:food_saver/core/Di.dart';
+import 'package:food_saver/core/Sh.dart';
 import 'package:food_saver/data/models/pastOrderModel.dart';
 
 
@@ -10,7 +12,7 @@ class PreviousOrderRequest {
   Future<List<PreviousOrdersModel>> getPastOrdersData() async {
     try {
   var headers = {
-  'Authorization': 'Token ea14ef561d160843f22f97621dd1e6995e72f1c0'
+  'Authorization': 'Token ${sl<MySharedPrefInterface>().getString(key: MySharedKeys.apiToken)}'
 };
 var response = await dio.request(
   'https://mnnt.shop/api/client_past_order/',

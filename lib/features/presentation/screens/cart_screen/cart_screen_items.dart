@@ -42,6 +42,13 @@ class _CartScreenState extends State<CartScreen> {
     });
   }
 
+  void _orderPlaced() async {
+    await _placeOrder.PlaceOrder();
+    setState(() {
+      future = _carttData.getCartData();
+    });
+  }
+
   void _removeFromCart(productId) async {
     await _cartDelRequest.delFromwCart(id: productId);
     // Refresh the wishlist data after deletion
@@ -90,16 +97,16 @@ class _CartScreenState extends State<CartScreen> {
               if (snapshot.hasData) {
                 if (snapshot.data.length > 0) {
                   print('taghreed ${snapshot.data.length}');
-                  return RefreshIndicator(
-                    onRefresh: () async {
-                      await Future.delayed(const Duration(seconds: 1));
-                      setState(() {
-                        future = _carttData.getCartData();
-                        ;
-                      });
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.all(TSizes.defaultSpace),
+                  return Padding(
+                    padding: const EdgeInsets.all(TSizes.defaultSpace),
+                    child: RefreshIndicator(
+                      onRefresh: () async {
+                        await Future.delayed(const Duration(seconds: 1));
+                        setState(() {
+                          future = _carttData.getCartData();
+                          ;
+                        });
+                      },
                       child: ListView.separated(
                         shrinkWrap: true,
                         itemCount: snapshot.data.length,
@@ -180,6 +187,7 @@ class _CartScreenState extends State<CartScreen> {
           children: [
             ElevatedButton(
               onPressed: () {
+                _orderPlaced;
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) {
@@ -187,8 +195,6 @@ class _CartScreenState extends State<CartScreen> {
                     },
                   ),
                 );
-                _placeOrder.PlaceOrder;
-               
               },
               child: Text('Place Order '),
               style: ButtonStyle(

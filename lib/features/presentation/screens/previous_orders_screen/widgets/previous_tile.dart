@@ -1,89 +1,53 @@
 import 'package:flutter/material.dart';
+import 'package:food_saver/features/presentation/screens/previous_products/previous_product.dart';
+import 'package:intl/intl.dart';
 
-class previousOrderTile extends StatefulWidget {
-  const previousOrderTile({super.key, required this.data});
+class previousTile extends StatefulWidget {
+  const previousTile({super.key, required this.data});
   final Map<dynamic, dynamic> data;
   @override
-  State<previousOrderTile> createState() => _previousOrderTileState();
+  State<previousTile> createState() => _previousOrderTileState();
 }
 
-class _previousOrderTileState extends State<previousOrderTile> {
+class _previousOrderTileState extends State<previousTile> {
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Card(
+      child: GestureDetector(
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) {
+                return previousProduct(
+                  data: widget.data["items"],
+                );
+              },
+            ),
+          );
+        },
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(11.0),
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.circular(8.0),
+                borderRadius: BorderRadius.circular(10.0),
                 child: Image.asset(
-                  'assets/images/cupcake.jpg',
-                  width: 80.0,
-                  height: 80.0,
+                  'assets/logos/Food Saver logo.jpg',
+                  width: 90.0,
+                  height: 90.0,
                   fit: BoxFit.cover,
                 ),
               ),
               SizedBox(
                 width: 16.0,
               ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          '',
-                          style: Theme.of(context).textTheme.bodyLarge,
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 2,
-                          textAlign: TextAlign.left,
-                        ),
-                        Text(
-                          '',
-                          // widget.data["product_name"],
-                          style: Theme.of(context).textTheme.labelLarge,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 4.0,
-                    ),
-                    Text(
-                      '',
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                      style: Theme.of(context).textTheme.labelLarge,
-                    ),
-                    SizedBox(
-                      height: 4.0,
-                    ),
-                    Text(
-                      '',
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                      style: Theme.of(context).textTheme.labelMedium,
-                    ),
-                    SizedBox(
-                      height: 4.0,
-                    ),
-                    Text(
-                      widget.data['product_name'],
-                      style: Theme.of(context).textTheme.bodySmall,
-                      maxLines: 2,
-                      overflow: TextOverflow.fade,
-                    ),
-                    SizedBox(
-                      height: 4.0,
-                    ),
-                  ],
+              Center(
+                child: Text(
+                  '${widget.data["start_cart"] ?? ''}',
+                  style: Theme.of(context).textTheme.labelLarge,
                 ),
-              ),
+              )
             ],
           ),
         ),

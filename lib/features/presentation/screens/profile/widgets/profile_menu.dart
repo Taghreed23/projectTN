@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:food_saver/utils/constants/colors.dart';
+import 'package:food_saver/utils/helpers/helper_functions.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:food_saver/utils/constants/sizes.dart';
 
@@ -15,6 +17,7 @@ class ProfileMenu extends StatelessWidget {
   final String value;
   @override
   Widget build(BuildContext context) {
+    final darkMode = THelperFunctions.isDarkMode(context);
     return GestureDetector(
       onTap: onPressed,
       child: Padding(
@@ -39,7 +42,7 @@ class ProfileMenu extends StatelessWidget {
             Expanded(
                 child: Icon(
               icon,
-              
+              color: darkMode ? TColors.primary : Colors.white,
               size: 18,
             ))
           ],

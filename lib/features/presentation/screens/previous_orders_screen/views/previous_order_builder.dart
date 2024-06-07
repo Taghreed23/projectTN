@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:food_saver/features/presentation/screens/category_screen/widgets/category_tail.dart';
 import 'package:food_saver/features/presentation/screens/previous_orders_screen/views/previous_order_view.dart';
-
+import 'package:food_saver/features/presentation/screens/previous_orders_screen/widgets/previous_tile.dart';
+import 'dart:developer';
 import 'package:food_saver/utils/constants/sizes.dart';
 
 import 'package:iconsax/iconsax.dart';
@@ -11,6 +12,7 @@ import 'package:food_saver/features/presentation/model/offer_model.dart';
 import 'package:food_saver/utils/constants/sizes.dart';
 import 'package:food_saver/features/presentation/screens/category_screen/views/categoryProduct_view.dart';
 import 'package:food_saver/data/network/category_request.dart';
+import 'package:intl/intl.dart';
 
 class PreviousListBilder extends StatefulWidget {
   PreviousListBilder({super.key, required this.future});
@@ -36,9 +38,12 @@ class _PreviousListState extends State<PreviousListBilder> {
         } else {
           if (snapshot.hasData) {
             if (snapshot.data.length > 0) {
-              print('taghreed ${snapshot.data.length}');
+              log('All carts ${snapshot.data.length}');
+     
+              // log('all data is ${snapshot.data!}');
+              // log('first item is ${snapshot.data![0]['items'][0]}');
               return previousListView(
-                data: snapshot.data![0],
+                data: snapshot.data!,
               );
               //
             } else {
@@ -49,6 +54,7 @@ class _PreviousListState extends State<PreviousListBilder> {
               );
             }
           } else {
+            /*  */
             return SliverToBoxAdapter(
                 child: Center(child: CircularProgressIndicator()));
           }

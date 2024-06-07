@@ -42,12 +42,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final darkMode = THelperFunctions.isDarkMode(context);
     return Scaffold(
         appBar: AppBar(
-          toolbarHeight: 40,
+          toolbarHeight: 70,
           centerTitle: true,
           elevation: 0,
           backgroundColor: Colors.transparent,
           title: Text(
-            'Profile',
+            'MY Profile',
             style: TextStyle(color: darkMode ? Colors.white : Colors.black),
           ),
         ),
