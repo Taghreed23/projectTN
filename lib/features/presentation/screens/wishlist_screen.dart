@@ -65,33 +65,43 @@ class _wishlistScreenState extends State<wishlistScreen> {
             if (snapshot.hasData) {
               if (snapshot.data.length > 0) {
                 print('taghreed ${snapshot.data.length}');
-                return CustomScrollView(
-                  slivers: [
-                    SliverGrid(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: TSizes.gridViewSpacing,
-                        mainAxisSpacing: TSizes.gridViewSpacing,
-                        mainAxisExtent: 288,
+                return RefreshIndicator(
+                   onRefresh: () async {
+                      await Future.delayed(const Duration(seconds: 1));
+                      setState(() {
+                        future = _wishlistData.getwishlistData();
+                        ;
+                      });
+                    },
+                  
+                  child: CustomScrollView(
+                    slivers: [
+                      SliverGrid(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: TSizes.gridViewSpacing,
+                          mainAxisSpacing: TSizes.gridViewSpacing,
+                          mainAxisExtent: 288,
+                        ),
+                        delegate: SliverChildBuilderDelegate(
+                          (BuildContext context, int index) {
+                            return Padding(
+                              padding: const EdgeInsets.only(right: 14),
+                              child: WishlistTail(
+                                onPressed: () => _removeFromWishlist(
+                                    snapshot.data[index]["product_id"]),
+                                color: Colors.red,
+                                icon: Iconsax.heart5,
+                                data: snapshot.data[index],
+                              ),
+                            );
+                          },
+                          childCount: snapshot.data.length,
+                        ),
                       ),
-                      delegate: SliverChildBuilderDelegate(
-                        (BuildContext context, int index) {
-                          return Padding(
-                            padding: const EdgeInsets.only(right: 14),
-                            child: WishlistTail(
-                              onPressed: () => _removeFromWishlist(
-                                  snapshot.data[index]["product_id"]),
-                              color: Colors.red,
-                              icon: Iconsax.heart5,
-                              data: snapshot.data[index],
-                            ),
-                          );
-                        },
-                        childCount: snapshot.data.length,
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 );
               } else {
                 return Center(

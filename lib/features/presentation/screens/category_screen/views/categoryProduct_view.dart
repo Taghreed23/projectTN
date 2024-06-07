@@ -18,7 +18,7 @@ class ProductListView extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.only(bottom: 22),
             child: cateoryTail(
-              data: data[index],
+              data: data[index]!,
             ),
           );
         },

@@ -1,5 +1,6 @@
 import 'package:food_saver/features/presentation/screens/home screen/home_page.dart';
 import 'package:food_saver/features/presentation/screens/cart_screen/cart_screen_items.dart';
+import 'package:food_saver/features/presentation/screens/previous_orders_screen/previous_orders.dart';
 import 'package:food_saver/features/presentation/screens/profile/profile.dart';
 import 'package:food_saver/features/presentation/screens/wishlist_screen.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +31,7 @@ class _My_navigationBarState extends State<My_navigationBar> {
     Icon(Icons.favorite, size: 30),
     Icon(Icons.shopping_cart, size: 30),
     Icon(Icons.person, size: 30),
-    Icon(Icons.search, size: 30),
+    Icon(Icons.receipt_long_rounded, size: 30),
   ];
 
   List Screens = [
@@ -38,6 +39,7 @@ class _My_navigationBarState extends State<My_navigationBar> {
     wishlistScreen(),
     CartScreen(),
     ProfileScreen(),
+    previousOrders(),
   ];
 
   @override

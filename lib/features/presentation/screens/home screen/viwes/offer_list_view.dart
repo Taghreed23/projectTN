@@ -79,8 +79,8 @@ import 'package:iconsax/iconsax.dart';
 import 'package:food_saver/data/network/home_request.dart';
 
 class OfferListView extends StatefulWidget {
-  const OfferListView({super.key});
-
+   OfferListView({super.key, required this.future});
+  var future;
   @override
   State<OfferListView> createState() => _OfferListViewState();
 }
@@ -97,7 +97,7 @@ class _OfferListViewState extends State<OfferListView> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: future,
+        future: widget.future,
         builder: (context, AsyncSnapshot<dynamic>? snapshot) {
           if (snapshot!.hasError) {
             print(snapshot.error);

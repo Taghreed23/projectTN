@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_saver/data/network/cart/cart_request.dart';
 import 'package:food_saver/data/network/cart/clear_cart_request.dart';
 import 'package:food_saver/data/network/cart/del_product_from_cart.dart';
+import 'package:food_saver/data/network/cart/place_order_request.dart';
 import 'package:food_saver/data/network/cart/quantiti_change_request.dart';
 import 'package:food_saver/features/authentications/screens/order_plased/order_plased.dart';
 import 'package:food_saver/features/presentation/screens/cart_screen/c_widget/cart_items.dart';
@@ -26,6 +27,7 @@ class _CartScreenState extends State<CartScreen> {
   CartDelRequest _cartDelRequest = CartDelRequest();
   ClearCartRequest _clearCartRequest = ClearCartRequest();
   updateQuantityRequest _changeQuantity = updateQuantityRequest();
+  PlaceOrderRequest _placeOrder = PlaceOrderRequest();
 
   @override
   void initState() {
@@ -88,64 +90,74 @@ class _CartScreenState extends State<CartScreen> {
               if (snapshot.hasData) {
                 if (snapshot.data.length > 0) {
                   print('taghreed ${snapshot.data.length}');
-                  return Padding(
-                    padding: const EdgeInsets.all(TSizes.defaultSpace),
-                    child: ListView.separated(
-                      shrinkWrap: true,
-                      itemCount: snapshot.data.length,
-                      separatorBuilder: (_, __) => const SizedBox(
-                        height: TSizes.spaceBtwSections,
-                      ),
-                      itemBuilder: (_, index) => SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            CartItem(data: snapshot.data[index]),
-                            SizedBox(
-                              height: TSizes.spaceBtwItems,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    SizedBox(
-                                      width: TSizes.iconlg * 1.2,
-                                      height: TSizes.iconlg * 1.2,
-                                      child: Center(
-                                        child: IconButton(
-                                          icon: Icon(Iconsax.trash,
-                                              color: darkMode
-                                                  ? TColors.primary
-                                                  : Colors.black),
-                                          onPressed: () => _removeFromCart(
-                                              snapshot.data[index]
-                                                  ["product_id"]),
-                                          // _cartDelRequest.delFromwCart(
-                                          //     id: snapshot.data[index]
-                                          //         ["product_id"]);
+                  return RefreshIndicator(
+                    onRefresh: () async {
+                      await Future.delayed(const Duration(seconds: 1));
+                      setState(() {
+                        future = _carttData.getCartData();
+                        ;
+                      });
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(TSizes.defaultSpace),
+                      child: ListView.separated(
+                        shrinkWrap: true,
+                        itemCount: snapshot.data.length,
+                        separatorBuilder: (_, __) => const SizedBox(
+                          height: TSizes.spaceBtwSections,
+                        ),
+                        itemBuilder: (_, index) => SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              CartItem(data: snapshot.data[index]),
+                              SizedBox(
+                                height: TSizes.spaceBtwItems,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      SizedBox(
+                                        width: TSizes.iconlg * 1.2,
+                                        height: TSizes.iconlg * 1.2,
+                                        child: Center(
+                                          child: IconButton(
+                                            icon: Icon(Iconsax.trash,
+                                                color: darkMode
+                                                    ? TColors.primary
+                                                    : Colors.black),
+                                            onPressed: () => _removeFromCart(
+                                                snapshot.data[index]
+                                                    ["product_id"]),
+                                            // _cartDelRequest.delFromwCart(
+                                            //     id: snapshot.data[index]
+                                            //         ["product_id"]);
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    SizedBox(
-                                      width: 50,
-                                    ),
-                                    ProductQuantityaddRemoveButton(
-                                      onPreespluss: () => _incrementQuantity(
-                                          snapshot.data[index]["product_id"]
-                                              .toString()),
-                                      onPreessmin: () => _decrementQuantity(
-                                          snapshot.data[index]["product_id"]
-                                              .toString()),
-                                      quantity: snapshot.data[index],
-                                    ),
-                                  ],
-                                ),
-                                ProductPriceText(
-                                  data: snapshot.data[index]!,
-                                ),
-                              ],
-                            )
-                          ],
+                                      SizedBox(
+                                        width: 50,
+                                      ),
+                                      ProductQuantityaddRemoveButton(
+                                        onPreespluss: () => _incrementQuantity(
+                                            snapshot.data[index]["product_id"]
+                                                .toString()),
+                                        onPreessmin: () => _decrementQuantity(
+                                            snapshot.data[index]["product_id"]
+                                                .toString()),
+                                        quantity: snapshot.data[index],
+                                      ),
+                                    ],
+                                  ),
+                                  ProductPriceText(
+                                    data: snapshot.data[index]!,
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -175,7 +187,8 @@ class _CartScreenState extends State<CartScreen> {
                     },
                   ),
                 );
-                _clearCart();
+                _placeOrder.PlaceOrder;
+               
               },
               child: Text('Place Order '),
               style: ButtonStyle(

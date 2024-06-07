@@ -9,7 +9,7 @@ import 'package:food_saver/utils/helpers/helper_functions.dart';
 import 'package:food_saver/common/widgets/circular_icons.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:food_saver/data/network/home_request.dart';
 import 'package:food_saver/data/network/api.dart';
 
@@ -79,12 +79,14 @@ class _HerzontalOfferTileState extends State<HerzontalOfferTile> {
                 GestureDetector(
                   onTap: () {},
                   child: Container(
+                      width: double.infinity,
                       decoration: BoxDecoration(
                           color: TColors.light,
                           borderRadius: BorderRadius.circular(TSizes.md)),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(TSizes.md),
                         child: Image(
+                            fit: BoxFit.fill,
                             image: NetworkImage(
                                 "${Api.baseUrl2}${widget.data['image']}")),
                       )),
@@ -164,8 +166,8 @@ class _HerzontalOfferTileState extends State<HerzontalOfferTile> {
                         style: Theme.of(context).textTheme.headlineSmall,
                       ),
                       Positioned(
-                        right: 0,
-                        bottom: 0,
+                        right: 0.0,
+                        bottom: 0.0,
                         child: Container(
                           decoration: const BoxDecoration(
                               color: TColors.primary,

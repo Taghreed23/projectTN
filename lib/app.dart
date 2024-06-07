@@ -4,6 +4,7 @@ import 'package:food_saver/core/Sh.dart';
 import 'package:food_saver/features/authentications/screens/signup/widgets/signup.dart';
 import 'package:food_saver/features/presentation/screens/category_screen/category_screen.dart';
 import 'package:food_saver/features/presentation/screens/home%20screen/navigation_bar.dart';
+import 'package:food_saver/features/presentation/screens/previous_orders_screen/previous_orders.dart';
 import 'package:food_saver/features/presentation/screens/wishlist_screen.dart';
 import 'package:get/get.dart';
 import 'package:food_saver/features/authentications/screens/login/login.dart';
@@ -30,6 +31,7 @@ class _AppState extends State<App> {
       sl<MySharedPrefInterface>().getString(key: MySharedKeys.apiToken);
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.system,
       theme: TAppTheme.lightTheme,
       darkTheme: TAppTheme.darkTheme,
@@ -63,8 +65,11 @@ class SplashSceen extends StatelessWidget {
       splash: Column(
         children: [
           Expanded(
-              child: LottieBuilder.asset(
-                  'assets/splash_screen/VID 20240516 WA0044.json')),
+              child: Container(
+            color: Colors.black,
+            child: LottieBuilder.asset(
+                'assets/splash_screen/VID 20240516 WA0044.json'),
+          )),
         ],
       ),
       nextScreen: token == ""
@@ -72,7 +77,7 @@ class SplashSceen extends StatelessWidget {
           : Scaffold(
               bottomNavigationBar: My_navigationBar(),
             ),
-      backgroundColor: Colors.black,
+
       // THelperFunctions.isDarkMode(context)
       //     ? TColors.darkerGrey
       //     : TColors.light,

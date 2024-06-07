@@ -5,12 +5,13 @@ import 'package:food_saver/core/Sh.dart';
 import 'package:http/http.dart' as http;
 import 'package:food_saver/data/network/api.dart';
 
-class ProfileRequest {
-  getProfileData() async {
+class PreviousOrderRequest {
+  getPastOrdersData() async {
     var headers = {
-      'Authorization': 'Token ${sl<MySharedPrefInterface>().getString(key: MySharedKeys.apiToken)}'
+      'Authorization': 'Token ea14ef561d160843f22f97621dd1e6995e72f1c0'
     };
-    var request = http.MultipartRequest('GET', Uri.parse('${Api.profile}'));
+    var request =
+        http.MultipartRequest('GET', Uri.parse('${Api.previousOrders}'));
 
     request.headers.addAll(headers);
 

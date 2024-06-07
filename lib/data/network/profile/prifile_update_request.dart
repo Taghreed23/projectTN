@@ -17,7 +17,7 @@ class ProfileUpdateRequest {
     required String gender,
   }) async {
     var headers = {
-      'Authorization': 'Token ea14ef561d160843f22f97621dd1e6995e72f1c0'
+      'Authorization': 'Token ${sl<MySharedPrefInterface>().getString(key: MySharedKeys.apiToken)}'
     };
     var data = FormData.fromMap({
         'email': email,

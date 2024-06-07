@@ -85,6 +85,7 @@ class _HerzontalOfferTileState extends State<WishlistTail> {
                 GestureDetector(
                   onTap: () {},
                   child: Container(
+                      width: double.infinity,
                       decoration: BoxDecoration(
                           color: TColors.light,
                           borderRadius: BorderRadius.circular(TSizes.md)),
@@ -96,21 +97,20 @@ class _HerzontalOfferTileState extends State<WishlistTail> {
                       )),
                 ),
 
-                // time tag
-                // Positioned(
-                //   top: 12,
-                //   child: Container(
-                //     padding: const EdgeInsets.symmetric(
-                //         horizontal: TSizes.sm, vertical: TSizes.xs),
-                //     decoration: BoxDecoration(
-                //       borderRadius: BorderRadius.circular(16),
-                //       color: TColors.secondry.withOpacity(0.8),
-                //     ),
-                //     child: Text(widget.data["expire_time_humified"],
-                //         maxLines: 1,
-                //         style: TextStyle(color: Colors.black, fontSize: 7)),
-                //   ),
-                // ),
+                Positioned(
+                  top: 12,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: TSizes.sm, vertical: TSizes.xs),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      color: TColors.secondry.withOpacity(0.8),
+                    ),
+                    child: Text(widget.data["product_expire_time_humified"],
+                        maxLines: 1,
+                        style: TextStyle(color: Colors.black, fontSize: 7)),
+                  ),
+                ),
 
                 // fav
                 Positioned(

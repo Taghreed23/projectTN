@@ -12,25 +12,19 @@ import 'package:food_saver/features/presentation/screens/category_screen/views/c
 import 'package:food_saver/data/network/category_request.dart';
 
 class CategoryListBilder extends StatefulWidget {
-  CategoryListBilder({super.key, required this.categoryId});
+  CategoryListBilder(
+      {super.key, required this.categoryId, required this.future});
   final int categoryId;
+  var future;
   @override
   State<CategoryListBilder> createState() => _CategoryListState();
 }
 
 class _CategoryListState extends State<CategoryListBilder> {
-  CategoryRequest _CategoryData = CategoryRequest();
-  var future;
-  @override
-  void initState() {
-    super.initState();
-    future = _CategoryData.getCategoryData(id: widget.categoryId);
-  }
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: future,
+      future: widget.future,
       builder: (context, AsyncSnapshot<dynamic>? snapshot) {
         if (snapshot!.hasError) {
           print(snapshot.error);
@@ -63,3 +57,5 @@ class _CategoryListState extends State<CategoryListBilder> {
     );
   }
 }
+
+

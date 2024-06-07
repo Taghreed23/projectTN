@@ -78,6 +78,7 @@ class _cateoryTailState extends State<cateoryTail> {
                       backgroundColor:
                           dark ? Colors.grey.shade500 : Colors.white,
                       child: CircleAvatar(
+                        backgroundColor: Colors.white,
                         radius: 42,
                         backgroundImage: NetworkImage(
                             "${Api.baseUrl2}${widget.data['image']}"),
