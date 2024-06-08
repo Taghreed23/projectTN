@@ -7,6 +7,8 @@ import 'package:food_saver/features/presentation/screens/home%20screen/navigatio
 import 'package:food_saver/features/presentation/screens/previous_orders_screen/previous_orders.dart';
 import 'package:food_saver/features/presentation/screens/wishlist_screen.dart';
 import 'package:food_saver/shop_features/authentications/widgets/Clogin_form.dart';
+import 'package:food_saver/shop_features/presentation/Screens/orders_screen/all_orders.dart';
+import 'package:food_saver/shop_features/presentation/Screens/orders_screen/new_order_Date.dart';
 import 'package:food_saver/shop_features/presentation/Screens/products%20screen/All_products.dart';
 import 'package:food_saver/shop_features/presentation/Screens/products%20screen/widgets/pruducts_tile.dart';
 import 'package:food_saver/utils/helpers/helper_functions.dart';
@@ -71,17 +73,17 @@ class SplashSceen extends StatelessWidget {
         children: [
           Expanded(
               child: Container(
-            child: LottieBuilder.asset(
-                dark ? 'assets/splash_screen/VID 20240516 WA0044.json' : 'assets/splash_screen/WhatsApp Video 2024 06 08 at 3.39.02 PM (1).json'),
+            child: LottieBuilder.asset(dark
+                ? 'assets/splash_screen/VID 20240516 WA0044.json'
+                : 'assets/splash_screen/WhatsApp Video 2024 06 08 at 3.39.02 PM (1).json'),
           )),
         ],
       ),
-      nextScreen: CHomePage(),
-      // token == ""
-      //     ? loginScreen()
-      //     : Scaffold(
-      //         bottomNavigationBar: My_navigationBar(),
-      //       ),
+      nextScreen: token == ""
+          ? loginScreen()
+          : Scaffold(
+              bottomNavigationBar: My_navigationBar(),
+            ),
 
       // THelperFunctions.isDarkMode(context)
       //     ? TColors.darkerGrey

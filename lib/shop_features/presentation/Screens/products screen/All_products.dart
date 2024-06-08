@@ -52,7 +52,7 @@ class _allProductScreenScreenState extends State<allProductScreen> {
         elevation: 0,
         backgroundColor: Colors.transparent,
         title: Text(
-          'All MY Products',
+          'All My Products',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: darkMode ? Colors.white : Colors.black,
