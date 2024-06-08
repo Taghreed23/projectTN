@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:food_saver/shop_features/My_Drawer.dart';
 import 'package:food_saver/utils/helpers/helper_functions.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/get_core.dart';
-import 'package:food_saver/customer features/presentation/Screens/add_offer.dart';
-import 'package:food_saver/customer features/presentation/widgets/container.dart';
+import 'package:food_saver/shop_features/presentation/Screens/add_offer/add_offer.dart';
+import 'package:food_saver/shop_features/presentation/widgets/container.dart';
 
 class CHomePage extends StatelessWidget {
   const CHomePage({super.key});
@@ -14,12 +15,7 @@ class CHomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        leading: GestureDetector(
-            onTap: () {},
-            child: Icon(
-              Icons.more_horiz_outlined,
-              color: Color(0xFFCF5051),
-            )),
+        
         toolbarHeight: 70,
         centerTitle: true,
         elevation: 0,
@@ -40,6 +36,9 @@ class CHomePage extends StatelessWidget {
           ),
         ),
       ),
+      drawer: const MYNavigationDrawer(
+        
+      ) ,
       body: Column(
         children: [
           MyImageContainer(),

@@ -10,4 +10,5 @@ class Api {
   static const String quantity = '${baseUrl}/modify_cart/';
   static const String category = '${baseUrl}/products/?category_id=';
   static const String previousOrders = '${baseUrl}/client_past_order/';
+    static const String shopProduct = '${baseUrl}/shop_products/';
 }

@@ -14,7 +14,7 @@ import 'package:food_saver/cubit/auth_cubit.dart';
 import 'package:food_saver/cubit/auth_state.dart';
 import 'package:food_saver/features/presentation/screens/home screen/home_page.dart';
 import 'package:food_saver/features/authentications/widgets/my_button.dart';
-import 'package:food_saver/customer features/presentation/Screens/home_page.dart';
+import 'package:food_saver/shop_features/presentation/Screens/home screen/home_page.dart';
 
 class CLoginForm extends StatelessWidget {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -93,44 +93,59 @@ class CLoginForm extends StatelessWidget {
               ),
 
               // signin button
-              BlocConsumer<AuthCubit, AuthState>(
-                listener: (context, state) {
-                  if (state is AuthError) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(state.error),
-                        backgroundColor: Colors.red,
-                      ),
-                    );
-                  } else if (state is AuthLoaded) {
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => CHomePage(),
-                      ),
-                      (route) => false,
-                    );
-                  }
-                },
-                builder: (context, state) {
-                  return SizedBox(
-                    width: double.infinity,
-                    child: My_Button(
-                      onPressed: () {
-                        if (formKey.currentState!.validate()) {
-                          FocusScope.of(context).unfocus();
-                          context.read<AuthCubit>().login(
-                                username: emailController.text,
-                                password: passwordController.text,
-                              );
-                        }
-                      },
-                      label: TTexts.signIn,
-                      isLoading: state is AuthLoading,
-                    ),
-                  );
-                },
-              ),
+
+              SizedBox(
+                  width: double.infinity,
+                  child: My_Button(
+                    onPressed: () {
+                      // if (formKey.currentState!.validate()) {
+                      //   FocusScope.of(context).unfocus();
+                      //   context.read<AuthCubit>().login(
+                      //         username: emailController.text,
+                      //         password: passwordController.text,
+                      //       );
+                      // }
+                    },
+                    label: TTexts.signIn,
+                  )),
+              // BlocConsumer<AuthCubit, AuthState>(
+              //   listener: (context, state) {
+              //     if (state is AuthError) {
+              //       ScaffoldMessenger.of(context).showSnackBar(
+              //         SnackBar(
+              //           content: Text(state.error),
+              //           backgroundColor: Colors.red,
+              //         ),
+              //       );
+              //     } else if (state is AuthLoaded) {
+              //       Navigator.pushAndRemoveUntil(
+              //         context,
+              //         MaterialPageRoute(
+              //           builder: (context) => CHomePage(),
+              //         ),
+              //         (route) => false,
+              //       );
+              //     }
+              //   },
+              //   builder: (context, state) {
+              //     return SizedBox(
+              //       width: double.infinity,
+              //       child: My_Button(
+              //         onPressed: () {
+              //           // if (formKey.currentState!.validate()) {
+              //           //   FocusScope.of(context).unfocus();
+              //           //   context.read<AuthCubit>().login(
+              //           //         username: emailController.text,
+              //           //         password: passwordController.text,
+              //           //       );
+              //           // }
+              //         },
+              //         label: TTexts.signIn,
+              //         isLoading: state is AuthLoading,
+              //       ),
+              //     );
+              //   },
+              // ),
             ],
           ),
         ));

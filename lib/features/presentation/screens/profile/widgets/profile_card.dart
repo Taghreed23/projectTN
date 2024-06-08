@@ -39,7 +39,7 @@ class _profileCardState extends State<profileCard> {
                     backgroundColor: Colors.white,
                     radius: 42,
                     backgroundImage:
-                  NetworkImage("${Api.baseUrl2}${widget.data['image']}") !,
+                  NetworkImage("${Api.baseUrl2}${widget.data['image']}")!,
                     
                   ),
                 ),
