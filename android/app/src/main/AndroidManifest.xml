@@ -1,5 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.url_view">
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!-- Provide required visibility configuration for API level 30 and above -->
     <queries>
   <!-- If your app checks for SMS support -->
@@ -22,6 +24,7 @@
         android:label="ecommerce"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
+        
         <activity
             android:name=".MainActivity"
             android:exported="true"

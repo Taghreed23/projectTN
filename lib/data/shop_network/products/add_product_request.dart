@@ -23,6 +23,7 @@ class AddProductRequest {
     required String price,
     required String description,
     required String expire_time,
+   
     required String category,
   }) async {
     var headers = {
@@ -33,7 +34,7 @@ class AddProductRequest {
          'name': name,
          'price': price,
          'description': description,
-         'expire_time': '2024-06-08 08:00:00',
+         'expire_time': expire_time,
          'category': category
       
     });

@@ -95,64 +95,68 @@ class _AddOffer extends State<AddOffer> {
                 ),
                 Center(
                   child: _addProduct.offerPic == null
-              ? Material(
-                    elevation: 4.0,
-                    borderRadius: BorderRadius.circular(20),
-                    child: GestureDetector(
-                         onTap: () {
-                  ImagePicker()
-                      .pickImage(source: ImageSource.gallery)
-                      .then((value) {
-                    _addProduct.uploadofferPic(value!);
-                  });
-                },
-                      child: Container(
-                        width: 150,
-                        height: 150,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                              color: darkMode ? Colors.amber : Colors.amber,
-                              width: 1.5),
+                      ? Material(
+                          elevation: 4.0,
                           borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Icon(
-                          Icons.camera_alt_outlined,
-                          color: darkMode
-                              ? Color(
-                                  0xFFCF5051,
-                                )
-                              : Color(
-                                  0xFFCF5051,
+                          child: GestureDetector(
+                            onTap: () {
+                              ImagePicker()
+                                  .pickImage(source: ImageSource.gallery)
+                                  .then((value) {
+                                _addProduct.uploadofferPic(value!);
+                              });
+                            },
+                            child: Container(
+                              width: 150,
+                              height: 150,
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    color:
+                                        darkMode ? Colors.amber : Colors.amber,
+                                    width: 1.5),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Icon(
+                                Icons.camera_alt_outlined,
+                                color: darkMode
+                                    ? Color(
+                                        0xFFCF5051,
+                                      )
+                                    : Color(
+                                        0xFFCF5051,
+                                      ),
+                              ),
+                            ),
+                          ),
+                        )
+                      : Material(
+                          elevation: 4.0,
+                          borderRadius: BorderRadius.circular(20),
+                          child: GestureDetector(
+                            onTap: () {
+                              ImagePicker()
+                                  .pickImage(source: ImageSource.gallery)
+                                  .then((value) {
+                                _addProduct.uploadofferPic(value!);
+                              });
+                            },
+                            child: Container(
+                                width: 150,
+                                height: 150,
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color: darkMode
+                                          ? Colors.amber
+                                          : Colors.amber,
+                                      width: 1.5),
+                                  borderRadius: BorderRadius.circular(20),
                                 ),
+                                child: Image(
+                                  image: FileImage(
+                                      File(_addProduct.offerPic!.path)),
+                                )),
+                          ),
                         ),
-                      ),
-                    ),
-                  ):Material(
-                    elevation: 4.0,
-                    borderRadius: BorderRadius.circular(20),
-                    child: GestureDetector(
-                         onTap: () {
-                  ImagePicker()
-                      .pickImage(source: ImageSource.gallery)
-                      .then((value) {
-                    _addProduct.uploadofferPic(value!);
-                  });
-                },
-                      child: Container(
-                        width: 150,
-                        height: 150,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                              color: darkMode ? Colors.amber : Colors.amber,
-                              width: 1.5),
-                          borderRadius: BorderRadius.circular(20),
-                          
-                        ),
-                        child:  Image(image: FileImage(File(_addProduct.offerPic!.path)),)
-                        
-                      ),
-                    ),
-                  ),
                 ),
                 SizedBox(
                   height: 30.0,
@@ -350,9 +354,9 @@ class _AddOffer extends State<AddOffer> {
                       onPressed: () {
                         _addProduct.addProduct(
                             name: itemNameController.text,
+                            expire_time: itemEXDateController.text,
                             price: itemPriceController.text,
                             description: itemDetailsController.text,
-                            expire_time: itemEXDateController.text,
                             category: itemCategoryiController.text);
                       },
                       label: 'Add',
