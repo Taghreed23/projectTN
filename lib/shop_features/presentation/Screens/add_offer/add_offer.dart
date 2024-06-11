@@ -1,25 +1,40 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_saver/data/shop_network/products/add_product_request.dart';
+import 'package:food_saver/features/authentications/widgets/my_button.dart';
 
 import 'package:food_saver/utils/helpers/helper_functions.dart';
 import 'package:food_saver/utils/constants/colors.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AddOffer extends StatefulWidget {
   const AddOffer({super.key});
-  
 
   @override
   State<AddOffer> createState() => _AddOffer();
 }
 
 class _AddOffer extends State<AddOffer> {
-  final List<String> fooditems = ['Bakeries', 'Deserts', 'Meals', 'Grocery'];
+  final List<String> fooditems = [
+    'Bakeries:1',
+    'Deserts:3',
+    'Meals:4',
+    'Grocery:2'
+  ];
   String? value;
- GlobalKey<FormState> productFormKey = GlobalKey<FormState>();
+// Map food items to their corresponding category IDs
+
+  int? selectedCategoryId;
+  GlobalKey<FormState> productFormKey = GlobalKey<FormState>();
 
   TextEditingController itemNameController = TextEditingController();
-TextEditingController itemPriceController = TextEditingController();
-TextEditingController itemDetailsController = TextEditingController();
-TextEditingController itemEXDateController = TextEditingController();
+  TextEditingController itemPriceController = TextEditingController();
+  TextEditingController itemDetailsController = TextEditingController();
+  TextEditingController itemEXDateController = TextEditingController();
+  TextEditingController itemCategoryiController = TextEditingController();
+  AddProductRequest _addProduct = AddProductRequest();
   @override
   Widget build(BuildContext context) {
     final darkMode = THelperFunctions.isDarkMode(context);
@@ -69,7 +84,6 @@ TextEditingController itemEXDateController = TextEditingController();
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                
                 Text("Upload the Item Picture",
                     style: TextStyle(
                       color: darkMode ? Colors.white : Colors.black,
@@ -80,27 +94,62 @@ TextEditingController itemEXDateController = TextEditingController();
                   height: 20.0,
                 ),
                 Center(
-                  child: Material(
+                  child: _addProduct.offerPic == null
+              ? Material(
                     elevation: 4.0,
                     borderRadius: BorderRadius.circular(20),
-                    child: Container(
-                      width: 150,
-                      height: 150,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                            color: darkMode ? Colors.amber : Colors.amber,
-                            width: 1.5),
-                        borderRadius: BorderRadius.circular(20),
+                    child: GestureDetector(
+                         onTap: () {
+                  ImagePicker()
+                      .pickImage(source: ImageSource.gallery)
+                      .then((value) {
+                    _addProduct.uploadofferPic(value!);
+                  });
+                },
+                      child: Container(
+                        width: 150,
+                        height: 150,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                              color: darkMode ? Colors.amber : Colors.amber,
+                              width: 1.5),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Icon(
+                          Icons.camera_alt_outlined,
+                          color: darkMode
+                              ? Color(
+                                  0xFFCF5051,
+                                )
+                              : Color(
+                                  0xFFCF5051,
+                                ),
+                        ),
                       ),
-                      child: Icon(
-                        Icons.camera_alt_outlined,
-                        color: darkMode
-                            ? Color(
-                                0xFFCF5051,
-                              )
-                            : Color(
-                                0xFFCF5051,
-                              ),
+                    ),
+                  ):Material(
+                    elevation: 4.0,
+                    borderRadius: BorderRadius.circular(20),
+                    child: GestureDetector(
+                         onTap: () {
+                  ImagePicker()
+                      .pickImage(source: ImageSource.gallery)
+                      .then((value) {
+                    _addProduct.uploadofferPic(value!);
+                  });
+                },
+                      child: Container(
+                        width: 150,
+                        height: 150,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                              color: darkMode ? Colors.amber : Colors.amber,
+                              width: 1.5),
+                          borderRadius: BorderRadius.circular(20),
+                          
+                        ),
+                        child:  Image(image: FileImage(File(_addProduct.offerPic!.path)),)
+                        
                       ),
                     ),
                   ),
@@ -184,6 +233,7 @@ TextEditingController itemEXDateController = TextEditingController();
                       color: darkMode ? Colors.black : Color(0xFFececf8),
                       borderRadius: BorderRadius.circular(10)),
                   child: TextField(
+                    controller: itemDetailsController,
                     maxLines: 6,
                     decoration: InputDecoration(
                         border: InputBorder.none,
@@ -265,35 +315,48 @@ TextEditingController itemEXDateController = TextEditingController();
                       color: darkMode ? Color(0xFFececf8) : Colors.black,
                     ),
                     value: value,
+                    onTap: () {},
                   )),
                 ),
                 SizedBox(
                   height: 30.0,
                 ),
-                Center(
-                  child: Material(
-                    elevation: 5.0,
-                    borderRadius: BorderRadius.circular(10),
-                    child: Container(
-                      padding: EdgeInsets.symmetric(vertical: 5.0),
-                      width: 150,
-                      decoration: BoxDecoration(
-                          color: Color(
-                            0xFFCF5051,
-                          ),
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Center(
-                        child: Text(
-                          "Add",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 22.0,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ),
-                  ),
-                )
+                Text("What's your category number ?",
+                    style: TextStyle(
+                      color: darkMode ? Colors.white : Colors.black,
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.w500,
+                    )),
+                SizedBox(
+                  height: 20.0,
+                ),
+                TextField(
+                  controller: itemCategoryiController,
+                  decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: "Category Number",
+                      hintStyle: TextStyle(
+                        color: darkMode ? Colors.white : Colors.black,
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.w500,
+                      )),
+                ),
+                SizedBox(
+                  height: 30.0,
+                ),
+                SizedBox(
+                    width: double.infinity,
+                    child: My_Button(
+                      onPressed: () {
+                        _addProduct.addProduct(
+                            name: itemNameController.text,
+                            price: itemPriceController.text,
+                            description: itemDetailsController.text,
+                            expire_time: itemEXDateController.text,
+                            category: itemCategoryiController.text);
+                      },
+                      label: 'Add',
+                    ))
               ],
             ),
           ),

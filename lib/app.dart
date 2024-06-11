@@ -7,6 +7,7 @@ import 'package:food_saver/features/presentation/screens/home%20screen/navigatio
 import 'package:food_saver/features/presentation/screens/previous_orders_screen/previous_orders.dart';
 import 'package:food_saver/features/presentation/screens/wishlist_screen.dart';
 import 'package:food_saver/shop_features/authentications/widgets/Clogin_form.dart';
+import 'package:food_saver/shop_features/presentation/Screens/add_offer/add_offer.dart';
 import 'package:food_saver/shop_features/presentation/Screens/orders_screen/all_orders.dart';
 import 'package:food_saver/shop_features/presentation/Screens/orders_screen/new_order_Date.dart';
 import 'package:food_saver/shop_features/presentation/Screens/products%20screen/All_products.dart';
@@ -79,11 +80,13 @@ class SplashSceen extends StatelessWidget {
           )),
         ],
       ),
-      nextScreen: token == ""
-          ? loginScreen()
-          : Scaffold(
-              bottomNavigationBar: My_navigationBar(),
-            ),
+      nextScreen: CHomePage(),
+
+      // token == ""
+      //     ? loginScreen()
+      //     : Scaffold(
+      //         bottomNavigationBar: My_navigationBar(),
+      //       ),
 
       // THelperFunctions.isDarkMode(context)
       //     ? TColors.darkerGrey

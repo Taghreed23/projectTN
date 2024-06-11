@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_saver/features/presentation/screens/home%20screen/navigation_bar.dart';
+import 'package:food_saver/shop_features/authentications/login/login.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:food_saver/common/styles/spacing_styles.dart';
@@ -154,6 +155,20 @@ class TLoginForm extends StatelessWidget {
                   const SizedBox(
                     height: TSizes.spaceBtwSections,
                   ),
+                  TextButton(
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return CloginScreen();
+                            },
+                          ),
+                        );
+                      },
+                      child: Text(
+                        'Login as Business Owner',
+                        style: TextStyle(color: Colors.amber),
+                      ))
                 ],
               ),
             ));

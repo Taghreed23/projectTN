@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_saver/data/shop_network/login_request.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:food_saver/common/styles/spacing_styles.dart';
@@ -23,6 +24,7 @@ class CLoginForm extends StatelessWidget {
 
   TextEditingController passwordController = TextEditingController();
 
+  SLoginRequest _shoplogin = SLoginRequest();
   CLoginForm({
     super.key,
   });
@@ -98,6 +100,8 @@ class CLoginForm extends StatelessWidget {
                   width: double.infinity,
                   child: My_Button(
                     onPressed: () {
+                      _shoplogin.SloginRequest(
+                          username: emailController.text, password: passwordController.text);
                       // if (formKey.currentState!.validate()) {
                       //   FocusScope.of(context).unfocus();
                       //   context.read<AuthCubit>().login(
