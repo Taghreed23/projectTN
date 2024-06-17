@@ -21,7 +21,7 @@
 </queries>
     
     <application
-        android:label="ecommerce"
+        android:label="Food Saver"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         
