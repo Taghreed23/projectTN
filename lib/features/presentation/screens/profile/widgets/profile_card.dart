@@ -193,7 +193,7 @@ class _profileCardState extends State<profileCard> {
                 );
               },
               child: Text(
-                'LogOut',
+                'Log Out',
                 style: TextStyle(color: Color(0xFFCF5051)),
               ),
             ),

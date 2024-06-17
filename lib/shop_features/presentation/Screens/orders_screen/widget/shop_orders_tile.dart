@@ -34,17 +34,17 @@ class _SOrderTileState extends State<SOrderTile> {
               ),
               Expanded(
                 child: GestureDetector(
-                  onTap:                 (){
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) {
-              return OfferDetalies(
-                ProductId: widget.data["product_id"],
-              );
-            },
-          ),
-        );
-      }, 
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return OfferDetalies(
+                            ProductId: widget.data["product_id"],
+                          );
+                        },
+                      ),
+                    );
+                  },
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -75,7 +75,7 @@ class _SOrderTileState extends State<SOrderTile> {
                       Row(
                         children: [
                           Text(
-                            'product ends after :',
+                            'ends after: ',
                             // widget.data["product_name"],
                             style: Theme.of(context).textTheme.labelLarge,
                           ),

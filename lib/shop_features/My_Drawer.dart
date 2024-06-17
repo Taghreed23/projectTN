@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_saver/features/authentications/screens/login/login.dart';
 import 'package:food_saver/shop_features/presentation/Screens/home%20screen/home_page.dart';
 import 'package:food_saver/shop_features/presentation/Screens/orders_screen/new_order_Date.dart';
 import 'package:food_saver/shop_features/presentation/Screens/products%20screen/All_products.dart';
@@ -80,14 +81,13 @@ class MYNavigationDrawer extends StatelessWidget {
                 'ALL Orders',
               ),
               onTap: () {
-                  Navigator.of(context).push(
+                Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) {
                       return SnewOrderDate();
                     },
                   ),
                 );
-                
               },
             ),
           ),
@@ -97,6 +97,26 @@ class MYNavigationDrawer extends StatelessWidget {
             indent: 60,
             endIndent: 60,
             height: 10,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 60.0),
+            child: Center(
+              child: TextButton(
+                onPressed: () {
+                  Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => loginScreen(),
+                    ),
+                    // Always return false to remove all other screens
+                    (Route route) => false,
+                  );
+                },
+                child: Text(
+                  'Log Out',
+                  style: TextStyle(color: Color(0xFFCF5051), fontSize: 13),
+                ),
+              ),
+            ),
           ),
         ]),
       ),
