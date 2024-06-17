@@ -1,42 +1,41 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:food_saver/data/network/profile/prifile_update_request.dart';
 import 'package:food_saver/features/authentications/widgets/my_button.dart';
 import 'package:food_saver/utils/constants/sizes.dart';
 import 'package:iconsax/iconsax.dart';
 
-class changePhoneN0 extends StatefulWidget {
-  changePhoneN0(
+class changeName extends StatefulWidget {
+  changeName(
       {Key? key,
-      required this.name,
-      required this.email,
+      required this.phoneNo,
       required this.birthday,
+      required this.email,
       required this.gender})
       : super(key: key);
-  String email;
+  String phoneNo;
   String gender;
-  String name;
+  String email;
   String birthday;
 
   @override
-  State<changePhoneN0> createState() => _changeNameState();
+  State<changeName> createState() => _changeNamelState();
 }
 
-class _changeNameState extends State<changePhoneN0> {
+class _changeNamelState extends State<changeName> {
   ProfileUpdateRequest _UpdateProfileData = ProfileUpdateRequest();
   GlobalKey<FormState> formNameKey = GlobalKey<FormState>();
 
-  TextEditingController PhoneNoUpdatController = TextEditingController();
-  late TextEditingController emailController;
+  TextEditingController NameUpdatController = TextEditingController();
+  late TextEditingController phoneNoController;
   late TextEditingController genderController;
   late TextEditingController birthdayController;
-  late TextEditingController NameController;
+  late TextEditingController emailController;
   @override
   void initState() {
-    emailController = TextEditingController(text: widget.email);
+    phoneNoController = TextEditingController(text: widget.phoneNo);
     genderController = TextEditingController(text: widget.gender);
     birthdayController = TextEditingController(text: widget.birthday);
-    NameController = TextEditingController(text: widget.name);
+    emailController = TextEditingController(text: widget.email);
     super.initState();
   }
 
@@ -47,12 +46,12 @@ class _changeNameState extends State<changePhoneN0> {
           icon: Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);
-            setState(() {});
+
             // Navigate back to the previous screen
           },
         ),
         title: Text(
-          'Change Phone Number',
+          'Change Name',
           style: Theme.of(context).textTheme.headlineSmall,
         ),
       ),
@@ -62,7 +61,7 @@ class _changeNameState extends State<changePhoneN0> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Use real Phone Number for easy verification . ',
+              'Use rememberable Name for easy verification . ',
               style: Theme.of(context).textTheme.labelMedium,
             ),
             const SizedBox(
@@ -73,16 +72,16 @@ class _changeNameState extends State<changePhoneN0> {
                 child: Column(
                   children: [
                     TextFormField(
-                      controller: PhoneNoUpdatController,
+                      controller: NameUpdatController,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Please enter your New Number';
+                          return 'Please enter your New Name';
                         }
                         return null;
                       },
                       expands: false,
                       decoration: const InputDecoration(
-                          labelText: ' New phone Number',
+                          labelText: ' New Name',
                           prefixIcon: Icon(Iconsax.user)),
                     )
                   ],
@@ -95,12 +94,13 @@ class _changeNameState extends State<changePhoneN0> {
                 child: My_Button(
                   onPressed: () {
                     _UpdateProfileData.updateProfileData(
-                      name: NameController.text,
+                      name: NameUpdatController.text,
                       email: emailController.text,
-                      phone_number: PhoneNoUpdatController.text,
+                      phone_number: phoneNoController.text,
                       birthday: birthdayController.text,
                       gender: genderController.text,
                     );
+                    setState(() {});
                   },
                   label: "Save",
                 )),

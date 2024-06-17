@@ -82,7 +82,7 @@ class TLoginForm extends StatelessWidget {
                     decoration: const InputDecoration(
                       prefixIcon: Icon(Iconsax.password_check),
                       labelText: TTexts.password,
-                      suffixIcon: Icon(Iconsax.eye_slash),
+                      suffixIcon: Icon(Iconsax.eye),
                     ),
                   ),
                   const SizedBox(
@@ -91,21 +91,7 @@ class TLoginForm extends StatelessWidget {
                   const SizedBox(
                     height: TSizes.spaceBtwInputFields / 2,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Checkbox(value: true, onChanged: (Value) {}),
-                          const Text(TTexts.rememberMe),
-                        ],
-                        //forget passowrd
-                      ),
-                      TextButton(
-                          onPressed: () {},
-                          child: const Text(TTexts.forgetPassword)),
-                    ],
-                  ),
+
                   const SizedBox(
                     height: TSizes.spaceBtwSections,
                   ),

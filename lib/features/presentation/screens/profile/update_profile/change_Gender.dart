@@ -7,13 +7,14 @@ import 'package:iconsax/iconsax.dart';
 class changeGender extends StatefulWidget {
   changeGender(
       {Key? key,
+      required this.name,
       required this.email,
       required this.birthday,
       required this.phoneNo})
       : super(key: key);
   String email;
   String phoneNo;
-
+ String name;
   String birthday;
 
   @override
@@ -28,12 +29,15 @@ class _changeGenderState extends State<changeGender> {
   late TextEditingController emailController;
   late TextEditingController PhoneNOController;
   late TextEditingController birthdayController;
+     late TextEditingController NameController;
 
   @override
   void initState() {
     emailController = TextEditingController(text: widget.email);
     PhoneNOController = TextEditingController(text: widget.phoneNo);
     birthdayController = TextEditingController(text: widget.birthday);
+     NameController =TextEditingController(text: widget.name);
+    
     super.initState();
   }
 
@@ -92,6 +96,7 @@ class _changeGenderState extends State<changeGender> {
                 child: My_Button(
                   onPressed: () {
                     _UpdateProfileData.updateProfileData(
+                      name: NameController.text,
                       email: emailController.text,
                       phone_number: PhoneNOController.text,
                       birthday: birthdayController.text,
@@ -100,7 +105,17 @@ class _changeGenderState extends State<changeGender> {
                     setState(() {});
                   },
                   label: "Save",
-                ))
+                )),
+                      const SizedBox(
+              height: TSizes.spaceBtwSections,
+            ),
+            Center(
+              child: Text(
+                'Please refresh your Profile Screen . ',
+                style: Theme.of(context).textTheme.labelMedium,
+              ),
+            ),
+                
           ],
         ),
       ),

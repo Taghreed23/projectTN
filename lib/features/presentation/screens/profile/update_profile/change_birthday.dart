@@ -8,11 +8,13 @@ class changeBirth extends StatefulWidget {
   changeBirth(
       {Key? key,
       required this.email,
+      required this.name,
       required this.PhoneNO,
       required this.gender})
       : super(key: key);
   String email;
   String gender;
+  String name;
 
   String PhoneNO;
 
@@ -28,12 +30,15 @@ class _changeBirthState extends State<changeBirth> {
   late TextEditingController emailController;
   late TextEditingController genderController;
   late TextEditingController PhoneNOController;
+  late TextEditingController NameController;
 
   @override
   void initState() {
     emailController = TextEditingController(text: widget.email);
     genderController = TextEditingController(text: widget.gender);
     PhoneNOController = TextEditingController(text: widget.PhoneNO);
+    NameController = TextEditingController(text: widget.name);
+
     super.initState();
   }
 
@@ -92,6 +97,7 @@ class _changeBirthState extends State<changeBirth> {
                 child: My_Button(
                   onPressed: () {
                     _UpdateProfileData.updateProfileData(
+                      name: NameController.text,
                       email: emailController.text,
                       phone_number: PhoneNOController.text,
                       birthday: BirthUpdatController.text,
@@ -100,7 +106,16 @@ class _changeBirthState extends State<changeBirth> {
                     setState(() {});
                   },
                   label: "Save",
-                ))
+                )),
+            const SizedBox(
+              height: TSizes.spaceBtwSections,
+            ),
+            Center(
+              child: Text(
+                'Please refresh your Profile Screen . ',
+                style: Theme.of(context).textTheme.labelMedium,
+              ),
+            ),
           ],
         ),
       ),

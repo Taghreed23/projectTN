@@ -7,13 +7,14 @@ import 'package:iconsax/iconsax.dart';
 class changeEmail extends StatefulWidget {
   changeEmail(
       {Key? key,
+      required this.name,
       required this.phoneNo,
       required this.birthday,
       required this.gender})
       : super(key: key);
   String phoneNo;
   String gender;
-
+    String name;
   String birthday;
 
   @override
@@ -28,12 +29,14 @@ class _changeEmailState extends State<changeEmail> {
   late TextEditingController phoneNoController;
   late TextEditingController genderController;
   late TextEditingController birthdayController;
+   late TextEditingController NameController;
 
   @override
   void initState() {
     phoneNoController = TextEditingController(text: widget.phoneNo);
     genderController = TextEditingController(text: widget.gender);
     birthdayController = TextEditingController(text: widget.birthday);
+     NameController =TextEditingController(text: widget.name);
     super.initState();
   }
 
@@ -92,6 +95,7 @@ class _changeEmailState extends State<changeEmail> {
                 child: My_Button(
                   onPressed: () {
                     _UpdateProfileData.updateProfileData(
+                      name: NameController.text,
                       email: EmailUpdatController.text,
                       phone_number: phoneNoController.text,
                       birthday: birthdayController.text,
@@ -100,7 +104,16 @@ class _changeEmailState extends State<changeEmail> {
                     setState(() {});
                   },
                   label: "Save",
-                ))
+                )),
+                      const SizedBox(
+              height: TSizes.spaceBtwSections,
+            ),
+            Center(
+              child: Text(
+                'Please refresh your Profile Screen . ',
+                style: Theme.of(context).textTheme.labelMedium,
+              ),
+            ),
           ],
         ),
       ),

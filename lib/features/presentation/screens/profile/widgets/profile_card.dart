@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:food_saver/data/network/api.dart';
+import 'package:food_saver/features/authentications/screens/login/login.dart';
 import 'package:food_saver/features/presentation/screens/profile/update_profile/change_Gender.dart';
 import 'package:food_saver/features/presentation/screens/profile/update_profile/change_birthday.dart';
 import 'package:food_saver/features/presentation/screens/profile/update_profile/change_email.dart';
+import 'package:food_saver/features/presentation/screens/profile/update_profile/change_name.dart';
 import 'package:food_saver/features/presentation/screens/profile/update_profile/changephoNO_name.dart';
 import 'package:food_saver/features/presentation/screens/profile/widgets/profile_menu.dart';
 import 'package:food_saver/features/presentation/screens/profile/widgets/section_handealing.dart';
@@ -38,8 +40,7 @@ class _profileCardState extends State<profileCard> {
                     backgroundColor: Colors.white,
                     radius: 42,
                     backgroundImage:
-                  NetworkImage("${Api.baseUrl2}${widget.data['image']}"),
-                    
+                        NetworkImage("${Api.baseUrl2}${widget.data['image']}"),
                   ),
                 ),
                 TextButton(
@@ -65,7 +66,22 @@ class _profileCardState extends State<profileCard> {
           ProfileMenu(
             title: 'Name',
             value: widget.data["name"],
-            onPressed: () {},
+            onPressed: () {
+              setState(() {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return changeName(
+                        email: widget.data["email"],
+                        birthday: widget.data["birthday"],
+                        gender: widget.data["gender"],
+                        phoneNo: widget.data["phone_number"],
+                      );
+                    },
+                  ),
+                );
+              });
+            },
           ),
           ProfileMenu(
             onPressed: () {},
@@ -97,6 +113,7 @@ class _profileCardState extends State<profileCard> {
                     MaterialPageRoute(
                       builder: (context) {
                         return changeEmail(
+                          name: widget.data["name"],
                           birthday: widget.data["birthday"],
                           gender: widget.data["gender"],
                           phoneNo: widget.data["phone_number"],
@@ -109,13 +126,14 @@ class _profileCardState extends State<profileCard> {
               title: 'Email',
               value: widget.data["email"]),
           ProfileMenu(
-            title: 'Phone Number',
-            value: widget.data["phone_number"],
+            title: 'Phone NO',
+            value: '${widget.data["phone_number"]}',
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
                     return changePhoneN0(
+                      name: widget.data["name"],
                       birthday: widget.data["birthday"],
                       gender: widget.data["gender"],
                       email: widget.data["email"],
@@ -131,6 +149,7 @@ class _profileCardState extends State<profileCard> {
                   MaterialPageRoute(
                     builder: (context) {
                       return changeGender(
+                        name: widget.data["name"],
                         birthday: widget.data["birthday"],
                         email: widget.data["email"],
                         phoneNo: widget.data["phone_number"],
@@ -147,11 +166,11 @@ class _profileCardState extends State<profileCard> {
                   MaterialPageRoute(
                     builder: (context) {
                       return changeBirth(
+                        name: widget.data["name"],
                         email: widget.data["email"],
                         gender: widget.data["gender"],
                         PhoneNO: widget.data["phone_number"],
                       );
-           
                     },
                   ),
                 );
@@ -161,6 +180,23 @@ class _profileCardState extends State<profileCard> {
           const Divider(),
           const SizedBox(
             height: TSizes.spaceBtwItems,
+          ),
+          Center(
+            child: TextButton(
+              onPressed: () {
+                Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => loginScreen(),
+                  ),
+                  // Always return false to remove all other screens
+                  (Route route) => false,
+                );
+              },
+              child: Text(
+                'LogOut',
+                style: TextStyle(color: Color(0xFFCF5051)),
+              ),
+            ),
           ),
         ],
       ),

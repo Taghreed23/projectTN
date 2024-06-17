@@ -21,9 +21,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
     future = _ProfileData.getProfileData();
   }
 
-  void _refreshProfile(email, phone_number, birthday, gender) async {
+  void _refreshProfile(name,email, phone_number, birthday, gender) async {
     await _UpdateProfileData.updateProfileData(
-        email: email,
+      name: name,
+       email: email,
         phone_number: phone_number,
         birthday: birthday,
         gender: gender);

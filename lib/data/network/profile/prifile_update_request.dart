@@ -15,13 +15,14 @@ class ProfileUpdateRequest {
     required String phone_number,
     required String birthday,
     required String gender,
+    required String name
   }) async {
     var headers = {
       'Authorization': 'Token ${sl<MySharedPrefInterface>().getString(key: MySharedKeys.apiToken)}'
     };
     var data = FormData.fromMap({
         'email': email,
-        'name': 'nourmaged',
+        'name': name,
         'phone_number': phone_number,
         'gender': gender,
         'birthday': birthday,

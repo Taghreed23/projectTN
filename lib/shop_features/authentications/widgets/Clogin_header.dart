@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:food_saver/utils/constants/sizes.dart';
 import 'package:food_saver/utils/constants/text_strings.dart';
 
-class TLoginHeader extends StatelessWidget {
-  const TLoginHeader({
+class CLoginHeader extends StatelessWidget {
+  const CLoginHeader({
     super.key,
   });
 
@@ -18,7 +18,7 @@ class TLoginHeader extends StatelessWidget {
         ),
         const SizedBox(height: TSizes.sm),
         Text(
-          TTexts.loginSubTitle,
+          'How about we turn those lose into some cold hard cash',
           style: Theme.of(context).textTheme.bodyMedium,
         ),
       ],
