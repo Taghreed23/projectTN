@@ -1,12 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
 
-import 'package:food_saver/data/network/cart/quantiti_change_request.dart';
 import 'package:food_saver/features/presentation/screens/cart_screen/c_widget/t_circular_icon.dart';
 import 'package:food_saver/utils/constants/colors.dart';
 import 'package:food_saver/utils/constants/sizes.dart';
 import 'package:food_saver/utils/helpers/helper_functions.dart';
+import 'package:iconsax/iconsax.dart';
 
 class ProductQuantityaddRemoveButton extends StatefulWidget {
   ProductQuantityaddRemoveButton({
@@ -25,7 +24,6 @@ class ProductQuantityaddRemoveButton extends StatefulWidget {
 
 class _ProductQuantityaddRemoveButtonState
     extends State<ProductQuantityaddRemoveButton> {
-  updateQuantityRequest _changeQuantity = updateQuantityRequest();
   @override
   Widget build(BuildContext context) {
     return Row(

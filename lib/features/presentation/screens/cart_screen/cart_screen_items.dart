@@ -36,7 +36,7 @@ class _CartScreenState extends State<CartScreen> {
   }
 
   void _clearCart() async {
-    await _clearCartRequest.ClearCart();
+    await _clearCartRequest.clearCart();
     setState(() {
       future = _carttData.getCartData();
     });

@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-
+import 'package:food_saver/data/network/product_request.dart';
 import 'package:food_saver/features/presentation/screens/offer_card_screen/o_widgets/add_to_cart_model.dart';
 import 'package:food_saver/features/presentation/screens/offer_card_screen/o_widgets/favourite_button.dart';
-import 'package:food_saver/features/presentation/screens/offer_card_screen/o_widgets/product_card.dart';
-
 import 'package:food_saver/features/presentation/screens/offer_card_screen/views/specific_product_list.dart';
-import 'package:food_saver/utils/helpers/helper_functions.dart';
-import 'package:food_saver/data/network/product_request.dart';
+
 
 class OfferDetalies extends StatefulWidget {
   OfferDetalies({super.key, required this.ProductId});
@@ -27,7 +24,7 @@ class _OfferDetaliesState extends State<OfferDetalies> {
 
   @override
   Widget build(BuildContext context) {
-    final dark = THelperFunctions.isDarkMode(context);
+ 
 
     return Scaffold(
       body: CustomScrollView(slivers: [

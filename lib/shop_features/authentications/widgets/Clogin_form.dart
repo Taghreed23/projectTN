@@ -1,21 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:food_saver/data/shop_network/login_request.dart';
-import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:food_saver/common/styles/spacing_styles.dart';
-import 'package:food_saver/utils/constants/colors.dart';
-import 'package:food_saver/utils/constants/image_strings.dart';
-import 'package:food_saver/utils/constants/sizes.dart';
-import 'package:food_saver/utils/constants/text_strings.dart';
-import 'package:food_saver/utils/theme/custom_themes/elevated_botton_theme.dart';
-import 'package:food_saver/features/authentications/screens/signup/widgets/signup.dart';
 import 'package:food_saver/features/authentications/widgets/auth_text_field.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_saver/cubit/auth_cubit.dart';
-import 'package:food_saver/cubit/auth_state.dart';
-import 'package:food_saver/features/presentation/screens/home screen/home_page.dart';
 import 'package:food_saver/features/authentications/widgets/my_button.dart';
 import 'package:food_saver/shop_features/presentation/Screens/home screen/home_page.dart';
+import 'package:food_saver/utils/constants/sizes.dart';
+import 'package:food_saver/utils/constants/text_strings.dart';
+import 'package:iconsax/iconsax.dart';
 
 class CLoginForm extends StatelessWidget {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -100,15 +90,17 @@ class CLoginForm extends StatelessWidget {
                   width: double.infinity,
                   child: My_Button(
                     onPressed: () {
-                      _shoplogin.SloginRequest(
-                          username: emailController.text, password: passwordController.text);
-                      // if (formKey.currentState!.validate()) {
-                      //   FocusScope.of(context).unfocus();
-                      //   context.read<AuthCubit>().login(
-                      //         username: emailController.text,
-                      //         password: passwordController.text,
-                      //       );
-                      // }
+                      _shoplogin.Shoplogin(
+                          username: emailController.text,
+                          password: passwordController.text);
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return CHomePage();
+                          },
+                        ),
+                      );
+                 
                     },
                     label: TTexts.signIn,
                   )),

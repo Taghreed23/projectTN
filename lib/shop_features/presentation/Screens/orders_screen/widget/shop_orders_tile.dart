@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_saver/data/network/api.dart';
+import 'package:food_saver/features/presentation/screens/offer_card_screen/views/offer_detalies_screen.dart';
 
 class SOrderTile extends StatefulWidget {
   const SOrderTile({super.key, required this.data});
@@ -32,65 +33,78 @@ class _SOrderTileState extends State<SOrderTile> {
                 width: 16.0,
               ),
               Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      widget.data["product_name"],
-                      style: Theme.of(context).textTheme.bodyLarge,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
-                      textAlign: TextAlign.left,
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          'quantity:',
-                          // widget.data["product_name"],
-                          style: Theme.of(context).textTheme.labelLarge,
-                        ),
-                        Text(
-                          widget.data["quantity"].toString(),
-                          // widget.data["product_name"],
-                          style: Theme.of(context).textTheme.bodySmall,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 4.0,
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          'product ends after :',
-                          // widget.data["product_name"],
-                          style: Theme.of(context).textTheme.labelLarge,
-                        ),
-                        Text(
-                          widget.data["product_expire_time_humified"],
-                          // widget.data["product_name"],
-                          style: Theme.of(context).textTheme.bodySmall,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 4.0,
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          'Price:',
-                          // widget.data["product_name"],
-                          style: Theme.of(context).textTheme.labelLarge,
-                        ),
-                        Text(
-                          widget.data["product_price"].toString(),
-                          // widget.data["product_name"],
-                          style: Theme.of(context).textTheme.bodySmall,
-                        ),
-                      ],
-                    ),
-                  ],
+                child: GestureDetector(
+                  onTap:                 (){
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) {
+              return OfferDetalies(
+                ProductId: widget.data["product_id"],
+              );
+            },
+          ),
+        );
+      }, 
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        widget.data["product_name"],
+                        style: Theme.of(context).textTheme.bodyLarge,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                        textAlign: TextAlign.left,
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            'quantity:',
+                            // widget.data["product_name"],
+                            style: Theme.of(context).textTheme.labelLarge,
+                          ),
+                          Text(
+                            widget.data["quantity"].toString(),
+                            // widget.data["product_name"],
+                            style: Theme.of(context).textTheme.bodySmall,
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 4.0,
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            'product ends after :',
+                            // widget.data["product_name"],
+                            style: Theme.of(context).textTheme.labelLarge,
+                          ),
+                          Text(
+                            widget.data["product_expire_time_humified"],
+                            // widget.data["product_name"],
+                            style: Theme.of(context).textTheme.bodySmall,
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 4.0,
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            'Price:',
+                            // widget.data["product_name"],
+                            style: Theme.of(context).textTheme.labelLarge,
+                          ),
+                          Text(
+                            widget.data["product_price"].toString(),
+                            // widget.data["product_name"],
+                            style: Theme.of(context).textTheme.bodySmall,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],

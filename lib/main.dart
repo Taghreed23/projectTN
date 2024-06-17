@@ -1,14 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:food_saver/core/Sh.dart';
-import 'app.dart';
-import 'package:food_saver/core/Di.dart' as di;
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_saver/cubit/auth_cubit.dart';
-import 'package:food_saver/cubit/auth_state.dart';
-
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_saver/core/Di.dart' as di;
+import 'package:food_saver/core/Sh.dart';
+
+import 'app.dart';
 import 'observer.dart';
 
 void main() async {

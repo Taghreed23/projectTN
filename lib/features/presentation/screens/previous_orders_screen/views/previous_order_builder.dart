@@ -1,18 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:food_saver/features/presentation/screens/category_screen/widgets/category_tail.dart';
-import 'package:food_saver/features/presentation/screens/previous_orders_screen/views/previous_order_view.dart';
-import 'package:food_saver/features/presentation/screens/previous_orders_screen/widgets/previous_tile.dart';
 import 'dart:developer';
-import 'package:food_saver/utils/constants/sizes.dart';
 
-import 'package:iconsax/iconsax.dart';
-
-import 'package:food_saver/features/presentation/model/offer_model.dart';
-import 'package:food_saver/utils/constants/sizes.dart';
-import 'package:food_saver/features/presentation/screens/category_screen/views/categoryProduct_view.dart';
-import 'package:food_saver/data/network/category_request.dart';
-import 'package:intl/intl.dart';
+import 'package:flutter/material.dart';
+import 'package:food_saver/features/presentation/screens/previous_orders_screen/views/previous_order_view.dart';
 
 class PreviousListBilder extends StatefulWidget {
   PreviousListBilder({super.key, required this.future});

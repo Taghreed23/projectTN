@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:food_saver/data/network/wishlist/del_wishlist_request.dart';
 import 'package:food_saver/data/network/wishlist/wishlist_request.dart';
-
-import 'package:food_saver/features/presentation/screens/wishlist_screen/views/wishlist_list_view.dart';
 import 'package:food_saver/features/presentation/screens/wishlist_screen/widget/wishlist_tail.dart';
-import 'package:food_saver/utils/constants/colors.dart';
 import 'package:food_saver/utils/constants/sizes.dart';
 import 'package:food_saver/utils/helpers/helper_functions.dart';
-import 'package:food_saver/features/presentation/screens/category_screen/views/category__list_Builder.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:provider/provider.dart';
 
 class wishlistScreen extends StatefulWidget {
   const wishlistScreen({super.key});

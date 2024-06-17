@@ -1,12 +1,13 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:food_saver/data/shop_network/products/add_product_request.dart';
 import 'package:food_saver/features/authentications/widgets/my_button.dart';
+import 'package:food_saver/shop_features/presentation/Screens/products%20screen/All_products.dart';
 
 import 'package:food_saver/utils/helpers/helper_functions.dart';
-import 'package:food_saver/utils/constants/colors.dart';
+
 import 'package:image_picker/image_picker.dart';
 
 class AddOffer extends StatefulWidget {
@@ -35,6 +36,14 @@ class _AddOffer extends State<AddOffer> {
   TextEditingController itemEXDateController = TextEditingController();
   TextEditingController itemCategoryiController = TextEditingController();
   AddProductRequest _addProduct = AddProductRequest();
+  void _uploadpic() async {
+    setState(() {
+      ImagePicker().pickImage(source: ImageSource.camera).then((value) {
+        _addProduct.uploadofferPic(value!);
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final darkMode = THelperFunctions.isDarkMode(context);
@@ -44,7 +53,7 @@ class _AddOffer extends State<AddOffer> {
             onTap: () {
               Navigator.pop(context);
             },
-            child: Icon(
+            child: const Icon(
               Icons.arrow_back_ios_new_outlined,
               color: Color(0xFF373866),
             )),
@@ -61,7 +70,7 @@ class _AddOffer extends State<AddOffer> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Text(
+              const Text(
                 ' Offer',
                 style: TextStyle(
                   color: Color(
@@ -77,8 +86,8 @@ class _AddOffer extends State<AddOffer> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          margin:
-              EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0, bottom: 50.0),
+          margin: const EdgeInsets.only(
+              left: 20.0, right: 20.0, top: 20.0, bottom: 50.0),
           child: Form(
             key: productFormKey,
             child: Column(
@@ -90,7 +99,7 @@ class _AddOffer extends State<AddOffer> {
                       fontSize: 18.0,
                       fontWeight: FontWeight.w500,
                     )),
-                SizedBox(
+                const SizedBox(
                   height: 20.0,
                 ),
                 Center(
@@ -119,10 +128,10 @@ class _AddOffer extends State<AddOffer> {
                               child: Icon(
                                 Icons.camera_alt_outlined,
                                 color: darkMode
-                                    ? Color(
+                                    ? const Color(
                                         0xFFCF5051,
                                       )
-                                    : Color(
+                                    : const Color(
                                         0xFFCF5051,
                                       ),
                               ),
@@ -132,33 +141,24 @@ class _AddOffer extends State<AddOffer> {
                       : Material(
                           elevation: 4.0,
                           borderRadius: BorderRadius.circular(20),
-                          child: GestureDetector(
-                            onTap: () {
-                              ImagePicker()
-                                  .pickImage(source: ImageSource.gallery)
-                                  .then((value) {
-                                _addProduct.uploadofferPic(value!);
-                              });
-                            },
-                            child: Container(
-                                width: 150,
-                                height: 150,
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                      color: darkMode
-                                          ? Colors.amber
-                                          : Colors.amber,
-                                      width: 1.5),
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Image(
-                                  image: FileImage(
-                                      File(_addProduct.offerPic!.path)),
-                                )),
+                          child: Container(
+                            width: 150,
+                            height: 150,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: darkMode ? Colors.amber : Colors.amber,
+                                  width: 1.5),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: _addProduct.offerPic != null
+                                ? Image(
+                                    image: FileImage(
+                                        File(_addProduct.offerPic!.path)))
+                                : Icon(Icons.camera_alt_outlined),
                           ),
                         ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30.0,
                 ),
                 Text("Item Name",
@@ -319,6 +319,7 @@ class _AddOffer extends State<AddOffer> {
                       color: darkMode ? Color(0xFFececf8) : Colors.black,
                     ),
                     value: value,
+                    style: Theme.of(context).textTheme.labelMedium,
                     onTap: () {},
                   )),
                 ),
@@ -354,10 +355,17 @@ class _AddOffer extends State<AddOffer> {
                       onPressed: () {
                         _addProduct.addProduct(
                             name: itemNameController.text,
-                            expire_time: itemEXDateController.text,
                             price: itemPriceController.text,
                             description: itemDetailsController.text,
+                            expire_time: itemEXDateController.text,
                             category: itemCategoryiController.text);
+                                Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return allProductScreen();
+                          },
+                        ),
+                      );
                       },
                       label: 'Add',
                     ))

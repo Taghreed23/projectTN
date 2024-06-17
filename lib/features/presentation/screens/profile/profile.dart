@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:food_saver/data/network/profile/prifile_update_request.dart';
 import 'package:food_saver/data/network/profile/profile_request.dart';
-import 'package:food_saver/features/presentation/screens/profile/viwes/profile_list_builder.dart';
-import 'package:food_saver/features/presentation/screens/profile/viwes/profile_list_builder.dart';
 import 'package:food_saver/features/presentation/screens/profile/widgets/profile_card.dart';
-import 'package:food_saver/utils/constants/colors.dart';
 import 'package:food_saver/utils/helpers/helper_functions.dart';
-import 'package:food_saver/features/presentation/screens/category_screen/views/category__list_Builder.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});

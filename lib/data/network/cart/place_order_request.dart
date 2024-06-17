@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:food_saver/core/Di.dart';
 import 'package:food_saver/core/Sh.dart';
-import 'package:http/http.dart' as http;
-import 'package:food_saver/data/network/api.dart';
+
+
 import 'package:dio/dio.dart';
 class PlaceOrderRequest {
   PlaceOrder() async {

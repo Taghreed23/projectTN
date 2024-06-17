@@ -1,5 +1,4 @@
-
-
+import 'package:http_parser/http_parser.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_saver/core/Di.dart';
 import 'package:food_saver/core/Sh.dart';
@@ -25,12 +24,15 @@ class AuthCubit extends Cubit<AuthState> {
     required String phone_number,
     required String gender,
     required String birthday,
-    XFile? profilePic,
   }) async {
     try {
       emit(AuthLoading());
       var data = FormData.fromMap({
-        'image': profilePic,
+        'image': [
+          await MultipartFile.fromFile(profilePic!.path,
+              filename: profilePic!.name,
+              contentType: new MediaType("image", "jpeg"))
+        ],
         'email': email,
         'username': username,
         'name': name,

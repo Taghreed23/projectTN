@@ -1,12 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:iconsax/iconsax.dart';
-
 import 'package:food_saver/data/network/profile/prifile_update_request.dart';
 import 'package:food_saver/features/authentications/widgets/my_button.dart';
 import 'package:food_saver/utils/constants/sizes.dart';
-import 'package:food_saver/utils/constants/text_strings.dart';
+import 'package:iconsax/iconsax.dart';
 
 class changePhoneN0 extends StatefulWidget {
   changePhoneN0(

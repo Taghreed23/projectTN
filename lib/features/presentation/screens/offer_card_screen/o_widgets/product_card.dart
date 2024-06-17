@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:food_saver/features/presentation/screens/offer_card_screen/o_widgets/rating_offer.dart';
-import 'package:food_saver/data/network/product_request.dart';
 import 'package:food_saver/data/network/api.dart';
 
 class productCard extends StatefulWidget {

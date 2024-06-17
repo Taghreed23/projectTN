@@ -10,7 +10,6 @@ class PickImageWidget extends StatelessWidget {
   const PickImageWidget({
     super.key,
   });
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthState>(
@@ -70,3 +69,5 @@ class PickImageWidget extends StatelessWidget {
     );
   }
 }
+
+

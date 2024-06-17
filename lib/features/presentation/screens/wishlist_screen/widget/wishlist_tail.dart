@@ -1,22 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:food_saver/common/widgets/circular_icons.dart';
+import 'package:food_saver/data/network/api.dart';
 import 'package:food_saver/data/network/cart/add_to%20_cart.dart';
-import 'package:food_saver/data/network/wishlist/add_wishlist_request.dart';
-import 'package:food_saver/data/network/wishlist/del_wishlist_request.dart';
-import 'package:food_saver/features/presentation/model/offer_model.dart';
 import 'package:food_saver/features/presentation/screens/offer_card_screen/views/offer_detalies_screen.dart';
-import 'package:food_saver/features/presentation/screens/wishlist_screen.dart';
 import 'package:food_saver/utils/constants/colors.dart';
 import 'package:food_saver/utils/constants/sizes.dart';
 import 'package:food_saver/utils/helpers/helper_functions.dart';
-import 'package:food_saver/common/widgets/circular_icons.dart';
-import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-
-import 'package:food_saver/data/network/home_request.dart';
-import 'package:food_saver/data/network/api.dart';
-
-import 'package:food_saver/data/network/wishlist/wishlist_request.dart';
-import 'package:provider/provider.dart';
 
 // cached network image
 class WishlistTail extends StatefulWidget {
@@ -36,8 +26,7 @@ class WishlistTail extends StatefulWidget {
 }
 
 class _HerzontalOfferTileState extends State<WishlistTail> {
-  WishlistDelRequest _WishlistDel = WishlistDelRequest();
-  WishlistRequest _wishlistData = WishlistRequest();
+
   CartAddRequest _cartAddRequest = CartAddRequest();
   @override
   Widget build(BuildContext context) {

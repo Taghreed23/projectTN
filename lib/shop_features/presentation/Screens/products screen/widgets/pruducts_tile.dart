@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_saver/common/widgets/circular_icons.dart';
 import 'package:food_saver/data/network/api.dart';
+import 'package:food_saver/features/presentation/screens/offer_card_screen/views/offer_detalies_screen.dart';
 import 'package:food_saver/utils/constants/colors.dart';
 import 'package:food_saver/utils/constants/sizes.dart';
 import 'package:food_saver/utils/helpers/helper_functions.dart';
@@ -21,7 +22,17 @@ class _SProductTileState extends State<SProductTile> {
     final dark = THelperFunctions.isDarkMode(context);
 
     return GestureDetector(
-      onTap: () {},
+      onTap:                 (){
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) {
+              return OfferDetalies(
+                ProductId: widget.data["id"],
+              );
+            },
+          ),
+        );
+      }, 
       child: Padding(
         padding: const EdgeInsets.only(top: 8, left: 11, right: 11),
         child: Container(
@@ -58,51 +69,65 @@ class _SProductTileState extends State<SProductTile> {
                       ),
                     ),
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        widget.data["name"],
-                        style: Theme.of(context).textTheme.bodyLarge,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                        textAlign: TextAlign.left,
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            widget.data["shop_name"],
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
-                            style: Theme.of(context).textTheme.labelLarge,
-                          ),
-                          SizedBox(
-                            width: TSizes.xs,
-                          ),
-                          Icon(
-                            Iconsax.verify5,
-                            color: TColors.primary,
-                            size: TSizes.iconxs,
-                          )
-                        ],
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('ends after:',
-                              style: Theme.of(context).textTheme.bodyMedium),
-                          Text(widget.data["expire_time_humified"],
-                              maxLines: 4,
+                  GestureDetector(
+                    onTap:
+                    (){
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) {
+              return OfferDetalies(
+                ProductId: widget.data["id"],
+              );
+            },
+          ),
+        );
+      }, 
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          widget.data["name"],
+                          style: Theme.of(context).textTheme.bodyLarge,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                          textAlign: TextAlign.left,
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              widget.data["shop_name"],
                               overflow: TextOverflow.ellipsis,
-                              style: Theme.of(context).textTheme.bodySmall),
-                        ],
-                      ),
-                      Text(
-                        
-                        'Price: ${widget.data["price"]}',
-                        style: Theme.of(context).textTheme.labelLarge,
-                      ),
-                    ],
+                              maxLines: 2,
+                              style: Theme.of(context).textTheme.labelLarge,
+                            ),
+                            SizedBox(
+                              width: TSizes.xs,
+                            ),
+                            Icon(
+                              Iconsax.verify5,
+                              color: TColors.primary,
+                              size: TSizes.iconxs,
+                            )
+                          ],
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('ends after:',
+                                style: Theme.of(context).textTheme.bodyMedium),
+                            Text(widget.data["expire_time_humified"],
+                                maxLines: 4,
+                                overflow: TextOverflow.ellipsis,
+                                style: Theme.of(context).textTheme.bodySmall),
+                          ],
+                        ),
+                        Text(
+                          
+                          'Price: ${widget.data["price"]}',
+                          style: Theme.of(context).textTheme.labelLarge,
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),

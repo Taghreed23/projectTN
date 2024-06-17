@@ -1,12 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'dart:developer';
-import 'package:flutter/rendering.dart';
-import 'package:food_saver/features/presentation/screens/category_screen/widgets/category_tail.dart';
-import 'package:food_saver/features/presentation/screens/previous_orders_screen/widgets/previous_tile.dart';
-import 'package:food_saver/features/presentation/screens/previous_products/widgets/previous_Product_tile.dart';
+
+import 'package:flutter/material.dart';
 import 'package:food_saver/shop_features/presentation/Screens/orders_screen/widget/shop_orders_tile.dart';
-import 'package:food_saver/utils/constants/sizes.dart';
 
 class SorderListView extends StatelessWidget {
   SorderListView({super.key, required this.data});

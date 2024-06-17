@@ -4,12 +4,11 @@ import 'package:food_saver/features/presentation/screens/profile/update_profile/
 import 'package:food_saver/features/presentation/screens/profile/update_profile/change_birthday.dart';
 import 'package:food_saver/features/presentation/screens/profile/update_profile/change_email.dart';
 import 'package:food_saver/features/presentation/screens/profile/update_profile/changephoNO_name.dart';
-import 'package:food_saver/features/presentation/screens/profile/widgets/section_handealing.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:food_saver/utils/constants/sizes.dart';
 import 'package:food_saver/features/presentation/screens/profile/widgets/profile_menu.dart';
+import 'package:food_saver/features/presentation/screens/profile/widgets/section_handealing.dart';
+import 'package:food_saver/utils/constants/sizes.dart';
 import 'package:food_saver/utils/helpers/helper_functions.dart';
+import 'package:iconsax/iconsax.dart';
 
 class profileCard extends StatefulWidget {
   const profileCard({super.key, required this.data});
@@ -39,7 +38,7 @@ class _profileCardState extends State<profileCard> {
                     backgroundColor: Colors.white,
                     radius: 42,
                     backgroundImage:
-                  NetworkImage("${Api.baseUrl2}${widget.data['image']}")!,
+                  NetworkImage("${Api.baseUrl2}${widget.data['image']}"),
                     
                   ),
                 ),
@@ -152,7 +151,7 @@ class _profileCardState extends State<profileCard> {
                         gender: widget.data["gender"],
                         PhoneNO: widget.data["phone_number"],
                       );
-                      setState(() {});
+           
                     },
                   ),
                 );

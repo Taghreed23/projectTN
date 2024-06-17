@@ -1,21 +1,18 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:food_saver/features/authentications/widgets/pick_image.dart';
-import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:food_saver/features/authentications/screens/login/widgets/social_botton.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_saver/cubit/auth_cubit.dart';
+import 'package:food_saver/cubit/auth_state.dart';
 import 'package:food_saver/features/authentications/screens/signup/widgets/verify_email.dart';
 import 'package:food_saver/features/authentications/widgets/auth_text_field.dart';
+import 'package:food_saver/features/authentications/widgets/my_button.dart';
+import 'package:food_saver/features/authentications/widgets/pick_image.dart';
 import 'package:food_saver/utils/constants/colors.dart';
 import 'package:food_saver/utils/constants/sizes.dart';
 import 'package:food_saver/utils/constants/text_strings.dart';
 import 'package:food_saver/utils/helpers/helper_functions.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_saver/cubit/auth_cubit.dart';
-import 'package:food_saver/cubit/auth_state.dart';
-import 'package:food_saver/features/authentications/widgets/my_button.dart';
+import 'package:iconsax/iconsax.dart';
 
+// ignore: must_be_immutable
 class SignupScreen extends StatelessWidget {
   SignupScreen({super.key});
   GlobalKey<FormState> formKey2 = GlobalKey<FormState>();

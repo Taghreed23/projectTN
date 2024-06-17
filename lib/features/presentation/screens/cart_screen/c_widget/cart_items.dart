@@ -1,13 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-
 import 'package:food_saver/common/widgets/images/t_rounded_image.dart';
 import 'package:food_saver/data/network/api.dart';
 import 'package:food_saver/features/presentation/screens/cart_screen/c_widget/product_text_title.dart';
 import 'package:food_saver/features/presentation/screens/cart_screen/c_widget/t_brand_text_with_icon.dart';
 import 'package:food_saver/features/presentation/screens/offer_card_screen/views/offer_detalies_screen.dart';
 import 'package:food_saver/utils/constants/colors.dart';
-import 'package:food_saver/utils/constants/image_strings.dart';
 import 'package:food_saver/utils/constants/sizes.dart';
 import 'package:food_saver/utils/helpers/helper_functions.dart';
 

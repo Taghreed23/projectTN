@@ -9,7 +9,7 @@ class ShopProductRequest {
   getShopProductData() async {
     var headers = {
       'Authorization':
-          'Token 15308df6ca6f4830f63fb8576344d8b6a3995406'
+          'Token ${sl<MySharedPrefInterface>().getString(key: MySharedKeys.apiToken)}'
     };
     var request = http.MultipartRequest('GET', Uri.parse('${Api.shopProduct}'));
 
