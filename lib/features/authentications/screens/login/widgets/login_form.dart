@@ -10,6 +10,7 @@ import 'package:food_saver/shop_features/authentications/login/login.dart';
 import 'package:food_saver/utils/constants/sizes.dart';
 import 'package:food_saver/utils/constants/text_strings.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 // ignore: must_be_immutable
 class TLoginForm extends StatelessWidget {
@@ -88,12 +89,34 @@ class TLoginForm extends StatelessWidget {
                   const SizedBox(
                     height: TSizes.spaceBtwInputFields,
                   ),
-                  const SizedBox(
-                    height: TSizes.spaceBtwInputFields / 2,
-                  ),
 
+                  Padding(
+                    padding: const EdgeInsets.only(right: 20.0, left: 20.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Forget Info',
+                          style: Theme.of(context).textTheme.labelMedium,
+                        ),
+                        TextButton(
+                            onPressed: () async {
+                              final Uri url =
+                                  Uri.parse('https://poe.com/FoodSaverHelperr');
+                              if (await canLaunchUrl(url)) {
+                                await launchUrl(url);
+                              } else {
+                                throw 'opps can\'t reach ';
+                              }
+                            },
+                            child: const Text(
+                              'Need Help ?',
+                            )),
+                      ],
+                    ),
+                  ),
                   const SizedBox(
-                    height: TSizes.spaceBtwSections,
+                    height: TSizes.spaceBtwSections / 2,
                   ),
 
                   // signin button

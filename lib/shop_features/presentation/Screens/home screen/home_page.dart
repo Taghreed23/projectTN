@@ -39,31 +39,33 @@ class CHomePage extends StatelessWidget {
       drawer: const MYNavigationDrawer(
         
       ) ,
-      body: Column(
-        children: [
-          MyImageContainer(),
-          Padding(
-            padding: EdgeInsets.only(top: 16, bottom: 16, right: 14, left: 25),
-            child: Row(
-              children: [
-                TextButton(
-                    onPressed: () => Get.to(() => AddOffer()),
-                    child: Text('Add Your Offer Now  ',
-                        style: TextStyle(
-                            color: darkMode
-                                ? Color(0xFFF6BE00)
-                                : Color(0xFFCF5051),
-                            fontSize: 16))),
-                IconButton(
-                    onPressed: () => Get.to(() => AddOffer()),
-                    icon: Icon(
-                      Icons.arrow_forward_ios,
-                      color: darkMode ? Color(0xFFCF5051) : Color(0xFFF6BE00),
-                    ))
-              ],
-            ),
-          )
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            MyImageContainer(),
+            Padding(
+              padding: EdgeInsets.only(top: 16, bottom: 16, right: 14, left: 25),
+              child: Row(
+                children: [
+                  TextButton(
+                      onPressed: () => Get.to(() => AddOffer()),
+                      child: Text('Add Your Offer Now  ',
+                          style: TextStyle(
+                              color: darkMode
+                                  ? Color(0xFFF6BE00)
+                                  : Color(0xFFCF5051),
+                              fontSize: 16))),
+                  IconButton(
+                      onPressed: () => Get.to(() => AddOffer()),
+                      icon: Icon(
+                        Icons.arrow_forward_ios,
+                        color: darkMode ? Color(0xFFCF5051) : Color(0xFFF6BE00),
+                      ))
+                ],
+              ),
+            )
+          ],
+        ),
       ),
 
       /*Column(

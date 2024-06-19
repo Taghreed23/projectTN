@@ -3,9 +3,11 @@ import 'package:food_saver/data/shop_network/login_request.dart';
 import 'package:food_saver/features/authentications/widgets/auth_text_field.dart';
 import 'package:food_saver/features/authentications/widgets/my_button.dart';
 import 'package:food_saver/shop_features/presentation/Screens/home screen/home_page.dart';
+import 'package:food_saver/utils/constants/colors.dart';
 import 'package:food_saver/utils/constants/sizes.dart';
 import 'package:food_saver/utils/constants/text_strings.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CLoginForm extends StatelessWidget {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -28,7 +30,6 @@ class CLoginForm extends StatelessWidget {
           child: Column(
             children: [
               TAuthTextField(
-                
                 controller: emailController,
                 textInputType: TextInputType.emailAddress,
                 validator: (value) {
@@ -63,12 +64,35 @@ class CLoginForm extends StatelessWidget {
               const SizedBox(
                 height: TSizes.spaceBtwInputFields,
               ),
-              const SizedBox(
-                height: TSizes.spaceBtwInputFields / 2,
-              ),
 
+              Padding(
+                padding: const EdgeInsets.only(right: 20.0, left: 20.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Forget Info',
+                      style: Theme.of(context).textTheme.labelMedium,
+                    ),
+                    TextButton(
+                        onPressed: () async {
+                          final Uri url =
+                              Uri.parse('https://poe.com/FoodSaverHelperr');
+                          if (await canLaunchUrl(url)) {
+                            await launchUrl(url);
+                          } else {
+                            throw 'opps can\'t reach ';
+                          }
+                        },
+                        child: const Text(
+                          'Need Help ?',
+                       
+                        )),
+                  ],
+                ),
+              ),
               const SizedBox(
-                height: TSizes.spaceBtwSections,
+                height: TSizes.spaceBtwSections / 2,
               ),
 
               // signin button

@@ -59,7 +59,7 @@ class _homeScreenState extends State<homeScreen> {
                 ? 'assets/icons/robot.png'
                 : 'assets/icons/robot (1).png'), // Use the imported asset path
             onPressed: () async {
-              final Uri url = Uri.parse('https://poe.com/FoodSaverHelper');
+              final Uri url = Uri.parse('https://poe.com/FoodSaverHelperr');
               if (await canLaunchUrl(url)) {
                 await launchUrl(url);
               } else {

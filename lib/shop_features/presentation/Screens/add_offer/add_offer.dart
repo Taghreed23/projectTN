@@ -25,6 +25,7 @@ class _AddOffer extends State<AddOffer> {
     'Grocery:2'
   ];
   String? value;
+  Widget? hint = Text('Select Category');
 // Map food items to their corresponding category IDs
 
   int? selectedCategoryId;
@@ -295,33 +296,37 @@ class _AddOffer extends State<AddOffer> {
                       color: darkMode ? Colors.black : Color(0xFFececf8),
                       borderRadius: BorderRadius.circular(10)),
                   child: DropdownButtonHideUnderline(
-                      child: DropdownButton<String>(
-                    items: fooditems
-                        .map((item) => DropdownMenuItem<String>(
-                            value: item,
-                            child: Text(
-                              item,
-                              style: TextStyle(
-                                fontSize: 18.0,
-                                color:
-                                    darkMode ? Colors.black : Color(0xFFececf8),
-                              ),
-                            )))
-                        .toList(),
-                    onChanged: ((value) => setState(() {
-                          this.value = value;
-                        })),
-                    dropdownColor: darkMode ? Color(0xFFececf8) : Colors.black,
-                    hint: Text("Select Category"),
-                    iconSize: 36,
-                    icon: Icon(
-                      Icons.arrow_drop_down,
-                      color: darkMode ? Color(0xFFececf8) : Colors.black,
+                    child: DropdownButton<String>(
+                      items: fooditems
+                          .map((item) => DropdownMenuItem<String>(
+                                value: item,
+                                child: Text(
+                                  item,
+                                  style: TextStyle(
+                                    fontSize: 18.0,
+                                    color: darkMode
+                                        ? Colors.black
+                                        : Color(0xFFececf8),
+                                  ),
+                                ),
+                              ))
+                          .toList(),
+                      onChanged: (value) => setState(() {
+                        this.value = value; // Update selected item
+                      }),
+                      dropdownColor:
+                          darkMode ? Color(0xFFececf8) : Colors.black,
+                      // Set hint text only if no item is selected (value is null)
+                      hint: value == null ? hint : null,
+                      iconSize: 36,
+                      icon: Icon(
+                        Icons.arrow_drop_down,
+                        color: darkMode ? Color(0xFFececf8) : Colors.black,
+                      ),
+                      value: value, // Display selected item
+                      style: TextStyle(color: Colors.red),
                     ),
-                    value: value,
-                    style: Theme.of(context).textTheme.labelMedium,
-                    onTap: () {},
-                  )),
+                  ),
                 ),
                 SizedBox(
                   height: 30.0,
@@ -359,13 +364,13 @@ class _AddOffer extends State<AddOffer> {
                             description: itemDetailsController.text,
                             expire_time: itemEXDateController.text,
                             category: itemCategoryiController.text);
-                                Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return allProductScreen();
-                          },
-                        ),
-                      );
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return allProductScreen();
+                            },
+                          ),
+                        );
                       },
                       label: 'Add',
                     ))
